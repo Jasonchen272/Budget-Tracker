@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '@/components/Header';
+import SubHeader from '@/components/Subheader'
 
 import {
   Box,
@@ -13,12 +14,15 @@ import {
   Container,
 } from '@chakra-ui/react';
 function HomePage() {
+    const currentDate = new Date();
+    const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
+  
   return (
-    <Box textAlign={"center"}>
+    <Box bg="gray.700" textAlign={"center"}>
           <Header/>
-      <Link href="/test">To test</Link>
+      <SubHeader curr_month={currentMonth}/>
       </Box>
   );
-}
+} 
 
 export default HomePage;
