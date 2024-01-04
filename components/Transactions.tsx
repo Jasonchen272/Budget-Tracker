@@ -1,7 +1,12 @@
 import React from 'react';
 import { Box, Heading,Text, Link, Flex, HStack } from '@chakra-ui/react';
 
-function Transactions( {category, amount }) {
+
+interface TransactionProps {
+  category: string;
+  amount: number;
+}
+function Transactions( {category, amount }: TransactionProps) {
     let imageSrc = `${category}.png`;
     if(category !== "food" && category !== "entertainment" && category !== "shopping"){
         imageSrc = 'other.png'
