@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from '@/components/Header';
+
 import {
   Box,
   Flex,
@@ -13,6 +15,7 @@ import {
 function HomePage() {
   return (
     <Box textAlign={"center"}>
+          <Header/>
       <Link href="/test">To test</Link>
       </Box>
   );
