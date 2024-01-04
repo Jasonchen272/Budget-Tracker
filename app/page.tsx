@@ -23,7 +23,7 @@ function HomePage() {
     const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
   
   return (
-    <Box bg="gray.700" textAlign={"center"}>
+    <Box textAlign={"center"}>
           <Header/>
     <SubHeader curr_month={currentMonth} total={0}/>
     <Box textAlign={"center"}>

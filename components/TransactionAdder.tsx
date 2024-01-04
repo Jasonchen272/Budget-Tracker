@@ -1,11 +1,16 @@
+'use client';
 import React from 'react';
-import { Box, Heading, Link, Flex, HStack, Select, NumberInput, NumberInputField, Button } from '@chakra-ui/react';
+import { Box, Heading, Link, Flex, HStack, Select, NumberInput, NumberInputField, Button, Checkbox } from '@chakra-ui/react';
+import Transactions from './Transactions';
 
 function TransactionAdder() {
+    const newTransaction = () => {
+        console.log(5)
+      };
   return (
     <Flex justify="space-between">
       <HStack mr = {50}>
-        <Select placeholder='Select option'>
+        <Select id = "userCategory" placeholder='Select Category'>
           <option value='food'>food</option>
           <option value='entertainment'>entertainment</option>
           <option value='shopping'>shopping</option>
@@ -14,7 +19,7 @@ function TransactionAdder() {
         <NumberInput defaultValue={0}>
           <NumberInputField />
         </NumberInput>
-        <Button>Add</Button>
+        <button onClick = {newTransaction}>Add</button>
       </HStack>
       </Flex>
   );
