@@ -12,7 +12,9 @@ import {
 } from '@chakra-ui/react';
 function HomePage() {
   return (
-    <Box></Box>
+    <Box textAlign={"center"}>
+      <button>hello</button>
+      </Box>
   );
 }
 
