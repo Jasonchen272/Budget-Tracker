@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from '@/components/Header';
+
 import {
   Box,
   Flex,
@@ -12,10 +14,10 @@ import {
 
 function HomePage() {
   return (
-  <Box>
-    <Link href="/..">Home</Link>
-  </Box>
-
+    <Box textAlign={"center"}>
+          <Header/>
+      <Link href="../">Home</Link>
+      </Box>
   );
 }
 
