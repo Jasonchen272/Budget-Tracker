@@ -25,7 +25,7 @@ function HomePage() {
   return (
     <Box bg="gray.700" textAlign={"center"}>
           <Header/>
-    <SubHeader curr_month={currentMonth}/>
+    <SubHeader curr_month={currentMonth} total={0}/>
     <Box textAlign={"center"}>
       <TransactionAdder></TransactionAdder>
       <Transactions category={"food"} amount = {55}></Transactions>

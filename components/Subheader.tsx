@@ -33,7 +33,9 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
         <Box ml={30} mt={30} color="gray.100" fontSize={30} fontWeight={700} w="10%">
             {curr_month}
         </Box>
-      <Box mt={30} color="gray.100" fontSize={30} fontWeight={700}>{total}</Box>
+      <Box mt={30} color="gray.100" fontSize={30} fontWeight={700}>
+        ${total}
+        </Box>
     </Flex>
   );
 }
