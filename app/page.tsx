@@ -13,7 +13,7 @@ import {
 function HomePage() {
   return (
     <Box textAlign={"center"}>
-      <button>hello</button>
+      <Link href="/test">To test</Link>
       </Box>
   );
 }

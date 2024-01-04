@@ -12,7 +12,10 @@ import {
 
 function HomePage() {
   return (
-    <Text>hello world</Text>
+  <Box>
+    <Link href="/..">Home</Link>
+  </Box>
+
   );
 }
 
