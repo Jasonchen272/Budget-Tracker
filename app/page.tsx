@@ -12,7 +12,12 @@ import {
   VStack,
   HStack,
   Container,
+  Select,
+  NumberInput,
+  NumberInputField,
 } from '@chakra-ui/react';
+import Transactions from '@/components/Transactions';
+import TransactionAdder from '@/components/TransactionAdder';
 function HomePage() {
     const currentDate = new Date();
     const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
@@ -20,8 +25,15 @@ function HomePage() {
   return (
     <Box bg="gray.700" textAlign={"center"}>
           <Header/>
-      <SubHeader curr_month={currentMonth}/>
+    <SubHeader curr_month={currentMonth}/>
+    <Box textAlign={"center"}>
+      <TransactionAdder></TransactionAdder>
+      <Transactions category={"food"} amount = {55}></Transactions>
+      <Transactions category={"entertainment"} amount = {20}></Transactions>
+      <Transactions category={"albfewfa"} amount={23}></Transactions>
+      <Transactions category={"shopping"} amount={43}></Transactions>
       </Box>
+    </Box>
   );
 } 
 
