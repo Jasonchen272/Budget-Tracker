@@ -1,6 +1,6 @@
 'use client';
 import React, {useState} from 'react';
-import { Box, Heading, Link, Flex, HStack, Select, NumberInput, NumberInputField, Button, Checkbox } from '@chakra-ui/react';
+import { Box, Heading, Link, Flex, HStack, Select, NumberInput, NumberInputField, Button, Checkbox, VStack } from '@chakra-ui/react';
 import Transactions from './Transactions';
 
 interface Transaction {
@@ -13,13 +13,10 @@ function TransactionAdder() {
     const [amount, setAmount] = useState('');
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const newTransaction = (e) => {
-        const newTransaction = { category: cat, amount: parseFloat(amount) || 0 };
-        setTransactions([...transactions, newTransaction]);
-        console.log(transactions)
+        const updatedTransactions = [...transactions, { category: cat, amount: parseFloat(amount) || 0 }];
+        setTransactions(updatedTransactions);
+        console.log(updatedTransactions)
 
-        // Clear the form fields
-        setCat('');
-        setAmount('');
       };
     const handleCat = (e) => {
         e.preventDefault();
@@ -28,21 +25,28 @@ function TransactionAdder() {
     const handleAmount = (e) => {
         e.preventDefault();
         setAmount(e.target.value)
+        e.target.value = 0;
     }
   return (
     <Flex justify="space-between">
       <HStack mr = {50}>
-        <Select id = "userCategory"  onChange={(e) => handleCat(e)}>
+        <Select id = "userCategory"  onChange={(e) => handleCat(e)} value = {cat}>
           <option value='food'>food</option>
           <option value='entertainment'>entertainment</option> 
           <option value='shopping'>shopping</option>
           <option value='other'>other</option>
         </Select>
-        <NumberInput defaultValue={0} onBlur={(e) => handleAmount(e)}>
+        <NumberInput defaultValue={0} onBlur={(e) => handleAmount(e)} >
           <NumberInputField />
         </NumberInput>
         <button onClick = {newTransaction}>Add</button>
+
       </HStack>
+      <VStack>
+      {transactions.map((transaction, index) => (
+            <Transactions category = {transaction.category} amount = {transaction.amount}></Transactions>
+            ))}
+      </VStack>
       </Flex>
   );
 }
