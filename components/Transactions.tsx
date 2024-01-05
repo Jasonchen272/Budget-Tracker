@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Heading,Text, Link, Flex, HStack } from '@chakra-ui/react';
+import { Box, Heading,Text, Link, Flex, HStack, Button } from '@chakra-ui/react';
+import TransactionList from './TransactionList';
 
 
 interface TransactionProps {
@@ -16,6 +17,7 @@ function Transactions( {category, amount }: TransactionProps) {
     <HStack p={2} color="black" alignContent={"center"}>
         <img src = {imageSrc} alt = {category} width = "2%"></img>
         <Text>{category} ${amount}</Text>
+        <Button onClick={() =>console.log(1)}>Delete</Button>
     </HStack>
   );
 }
