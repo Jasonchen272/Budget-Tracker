@@ -13,7 +13,7 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
         'September', 'October', 'November', 'December',
       ];
 
-      const [month, setMonth] = useState<string>('')
+      const [month, setMonth] = useState<string>(curr_month)
 
       const handleMonth = (e) => {
         e.preventDefault();
