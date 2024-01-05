@@ -32,10 +32,6 @@ function TransactionAdder({ addTransaction }: TransactionFormProps) {
         e.target.value = 0;
     }
 
-    const clearInput = (e) => {
-        e.preventDefault();
-        
-    }
   return (
     <Flex justify="space-between">
       <HStack mr = {50}>
@@ -45,7 +41,7 @@ function TransactionAdder({ addTransaction }: TransactionFormProps) {
           <option value='shopping'>shopping</option>
           <option value='other'>other</option>
         </Select>
-        <NumberInput defaultValue={0} onBlur={(e) => handleAmount(e)}  >
+        <NumberInput onBlur={(e) => handleAmount(e)}  >
           <NumberInputField placeholder='Cost'></NumberInputField>
         </NumberInput>
         <button onClick = {newTransaction}>Add</button >

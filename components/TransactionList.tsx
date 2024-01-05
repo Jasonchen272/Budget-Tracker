@@ -16,7 +16,7 @@ function TransactionList({transactions}:TransactionListProps) {
     <Text color = "white">Transactions</Text>
     <ul>
       {transactions.map((transaction, index) => (
-        <TransactionItem key={index} transaction={transaction} />
+        <TransactionItem key={index} transaction={transaction} transactions={transactions} />
       ))}
     </ul>
   </Box>

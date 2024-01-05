@@ -3,11 +3,14 @@ import { Box, Heading, Link, Flex } from '@chakra-ui/react';
 import Transactions from './Transactions';
 
 
+interface Transaction {
+  category: string;
+  amount: number;
+}
+
 interface TransactionItemProps {
     transaction: Transaction;
 }
-  
-  
 
 function TransactionItem({transaction}:TransactionItemProps) {
   return (
