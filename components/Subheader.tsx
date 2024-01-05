@@ -26,8 +26,9 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
             mt={30}
             placeholder="Month"
             borderColor='gray.700'
-            color="gray.100" 
+            color="black" 
             fontSize={18} 
+            bg={'white'}
             textAlign="center"
             py="2" 
             onChange={(e) => handleMonth(e)}>
@@ -38,10 +39,10 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
             ))}
         </Select>
         </Box>
-        <Box ml={30} mt={30} color="gray.100" fontSize={30} fontWeight={700} w="10%">
+        <Box ml={30} mt={30} color="black" fontSize={30} fontWeight={700} w="10%">
             {month}
         </Box>
-      <Box mt={30} color="gray.100" fontSize={30} fontWeight={700}>
+      <Box mt={30} color="black" fontSize={30} fontWeight={700}>
         ${total}
         </Box>
     </Flex>
