@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '@/components/Header';
 import SubHeader from '@/components/Subheader'
+import Transactions from '@/components/Transactions';
+import TransactionAdder from '@/components/TransactionAdder';
 
 import {
   Box,
@@ -16,14 +18,13 @@ import {
   NumberInput,
   NumberInputField,
 } from '@chakra-ui/react';
-import Transactions from '@/components/Transactions';
-import TransactionAdder from '@/components/TransactionAdder';
+
 function HomePage() {
     const currentDate = new Date();
     const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
   
   return (
-    <Box textAlign={"center"}>
+    <Box textAlign={"center"} bg="gray.700">
           <Header/>
     <SubHeader curr_month={currentMonth} total={0}/>
     <Box textAlign={"center"}>
