@@ -5,11 +5,19 @@ import TransactionList from './TransactionList';
 interface TransactionList{
   transactionList: TransactionList;
 }
-
+type Transactions = {
+    amount: number;
+    category: string;
+  };
+  
 interface TransactionProps {
   category: string;
   amount: number;
 }
+interface TransactionListProps {
+    transactions: Transactions[];
+    deleteTransaction: (index: number) => void;
+  }
 function Transactions( {category, amount }: TransactionProps, transactionList: TransactionList) {
     let imageSrc = `${category}.png`;
     if(category !== "food" && category !== "entertainment" && category !== "shopping"){
@@ -17,6 +25,8 @@ function Transactions( {category, amount }: TransactionProps, transactionList: T
     }
     console.log("fr")
     console.log(transactionList)
+
+    
   return (
     
     <HStack p={2} color="black" alignContent={"center"}>
