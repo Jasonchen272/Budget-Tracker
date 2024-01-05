@@ -1,8 +1,11 @@
-import React from 'react';
+'use client';
+import React, {useState} from 'react';
 import Header from '@/components/Header';
 import SubHeader from '@/components/Subheader'
 import Transactions from '@/components/Transactions';
 import TransactionAdder from '@/components/TransactionAdder';
+import TransactionList from '@/components/TransactionList';
+import TrasactionAdder from '@/components/TransactionAdder'
 
 import {
   Box,
@@ -19,20 +22,33 @@ import {
   NumberInputField,
 } from '@chakra-ui/react';
 
+interface Transaction {
+  category: string;
+  amount: number;
+}
+
+
 function HomePage() {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [amount, setAmount] = useState<number>(0);
+
+  const addTransaction = (newTransaction: Transaction) => {
+    setTransactions([...transactions, newTransaction]);
+  };
+
     const currentDate = new Date();
     const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
   
   return (
     <Box textAlign={"center"} bg="gray.700">
+
           <Header/>
-    <SubHeader curr_month={currentMonth} total={0}/>
+  
+            <SubHeader curr_month={currentMonth} total={0}/>
     <Box textAlign={"center"}>
-      <TransactionAdder></TransactionAdder>
-      <Transactions category={"food"} amount = {55}></Transactions>
-      <Transactions category={"entertainment"} amount = {20}></Transactions>
-      <Transactions category={"albfewfa"} amount={23}></Transactions>
-      <Transactions category={"shopping"} amount={43}></Transactions>
+      <TransactionAdder addTransaction={addTransaction} />
+      <TransactionList transactions={transactions} />
+
       </Box>
     </Box>
   );
