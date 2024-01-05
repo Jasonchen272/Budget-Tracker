@@ -13,18 +13,13 @@ type Transactions = {
 interface TransactionProps {
   category: string;
   amount: number;
+  deleteTransaction: React.MouseEventHandler<HTMLButtonElement>;
 }
-interface TransactionListProps {
-    transactions: Transactions[];
-    deleteTransaction: (index: number) => void;
-  }
-function Transactions( {category, amount }: TransactionProps, transactionList: TransactionList) {
+function Transactions( {category, amount, deleteTransaction }: TransactionProps) {
     let imageSrc = `${category}.png`;
     if(category !== "food" && category !== "entertainment" && category !== "shopping"){
         imageSrc = 'other.png'
     }
-    console.log("fr")
-    console.log(transactionList)
 
     
   return (
@@ -32,7 +27,7 @@ function Transactions( {category, amount }: TransactionProps, transactionList: T
     <HStack p={2} color="black" alignContent={"center"}>
         <img src = {imageSrc} alt = {category} width = "2%"></img>
         <Text>{category} ${amount}</Text>
-        <Button>Delete</Button>
+        <Button onClick={deleteTransaction}>Delete</Button>
     </HStack>
   );
 }

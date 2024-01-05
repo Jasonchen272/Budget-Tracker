@@ -9,16 +9,17 @@ type Transactions = {
 
 interface TransactionListProps {
   transactions: Transactions[];
+  deleteTransaction: (index: number) => void;
 }
   
 
-function TransactionList({transactions}:TransactionListProps) {
+function TransactionList({transactions, deleteTransaction}:TransactionListProps) {
   return (
     <Box>
     <Text color = "white">Transactions</Text>
     <ul>
       {transactions.map((transaction, index) => (
-        <TransactionItem key={index} transaction={transaction}/>
+        <TransactionItem key={index} index={index} transaction={transaction} deleteTransaction={deleteTransaction}/>
       ))}
     </ul>
   </Box>
