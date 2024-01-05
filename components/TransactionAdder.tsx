@@ -31,19 +31,24 @@ function TransactionAdder({ addTransaction }: TransactionFormProps) {
         setAmount(e.target.value)
         e.target.value = 0;
     }
+
+    const clearInput = (e) => {
+        e.preventDefault();
+        
+    }
   return (
     <Flex justify="space-between">
       <HStack mr = {50}>
-        <Select placeholder = {"Select Catagory"}defaultValue={"other"} id = "userCategory"  onChange={(e) => handleCat(e)} value = {cat}>
+        <Select placeholder = {"Select Catagory"}defaultValue={"other"} id = "userCategory"  onChange={(e) => handleCat(e)} value = {cat} bgColor = "white">
           <option value='food'>food</option>
           <option value='entertainment'>entertainment</option> 
           <option value='shopping'>shopping</option>
           <option value='other'>other</option>
         </Select>
-        <NumberInput defaultValue={0} onBlur={(e) => handleAmount(e)} >
-          <NumberInputField />
+        <NumberInput defaultValue={0} onBlur={(e) => handleAmount(e)}  >
+          <NumberInputField placeholder='Cost'></NumberInputField>
         </NumberInput>
-        <button onClick = {newTransaction}>Add</button>
+        <button onClick = {newTransaction}>Add</button >
 
       </HStack>
       </Flex>

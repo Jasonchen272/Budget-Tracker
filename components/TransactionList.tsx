@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Transactions from './Transactions';
 import TransactionItem from './TransactionItem';
 
-import { Box, Heading, Link, Flex } from '@chakra-ui/react';
+import { Box, Heading, Link, Flex,Text } from '@chakra-ui/react';
 
 
   interface TransactionListProps {
@@ -13,7 +13,7 @@ import { Box, Heading, Link, Flex } from '@chakra-ui/react';
 function TransactionList({transactions}:TransactionListProps) {
   return (
     <Box>
-    <h2>Transactions</h2>
+    <Text color = "white">Transactions</Text>
     <ul>
       {transactions.map((transaction, index) => (
         <TransactionItem key={index} transaction={transaction} />
