@@ -15,7 +15,7 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
 
       const [month, setMonth] = useState<string>(curr_month)
 
-      const handleMonth = (e) => {
+      const handleMonth = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
         setMonth(e.target.value)
     }

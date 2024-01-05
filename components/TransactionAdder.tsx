@@ -22,14 +22,14 @@ function TransactionAdder({ addTransaction }: TransactionFormProps) {
         console.log(updatedTransactions)
 
       };
-    const handleCat = (e) => {
+    const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
         setCat(e.target.value)
     }
-    const handleAmount = (e) => {
+    const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setAmount(e.target.value)
-        e.target.value = 0;
+        e.target.value = '0';
     }
 
   return (
