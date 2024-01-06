@@ -27,9 +27,9 @@ interface Transaction {
   amount: number;
 }
 
-
 function HomePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [amount, setAmount] = useState<number>(0);
 
   const addTransaction = (newTransaction: Transaction) => {
     setTransactions([...transactions, newTransaction]);
@@ -49,7 +49,7 @@ function HomePage() {
       <SubHeader curr_month={currentMonth} total={0}/>
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} />
-        <TransactionList transactions={transactions} />
+        <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>\
       </Box>
     </Box>
   );

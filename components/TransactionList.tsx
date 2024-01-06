@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import TransactionItem from './TransactionItem';
+
 import { Box, Heading, Link, Flex,Text } from '@chakra-ui/react';
+type Transactions = {
+  amount: number;
+  category: string;
+};
 
 interface TransactionListProps {
   transactions: Transactions[];

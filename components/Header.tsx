@@ -5,7 +5,7 @@ function Header() {
   return (
     <Box bg= "white" p={4} color="black">
         <Heading as="h1" fontSize="50"> 
-        Budget Tracker
+          Budget Tracker
         </Heading>
     </Box>
   );
