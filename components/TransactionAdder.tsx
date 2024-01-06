@@ -13,21 +13,21 @@ interface TransactionFormProps {
   
 
 function TransactionAdder({ addTransaction,updateTotal }: TransactionFormProps) {
-  
     const [cat, setCat] = useState<string>('');
     const [amount, setAmount] = useState<number>(0);
     const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const newTransaction = () => {
-        addTransaction({ category:cat, amount: amount });
+
+    const newTransaction = () => { 
+        addTransaction({ category:cat, amount: amount }); // update the transaction list in page.tsx
         const updatedTransactions = [...transactions, { category: cat, amount: amount || 0 }];
-        setTransactions(updatedTransactions);
-        updateTotal(amount);
+        setTransactions(updatedTransactions); // update the transaction list
+        updateTotal(amount); // updates the total spent 
     };
-    const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => { // set category
         e.preventDefault();
         setCat(e.target.value)
     }
-    const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => { 
         e.preventDefault();
         if(e.target.value == ''){
           setAmount(0);

@@ -31,16 +31,18 @@ function HomePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
 
-  const addTransaction = (newTransaction: Transaction) => {
+  const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
   };
+
   const deleteTransaction = (index: number) => {
     const updatedTransactions = [...transactions];
-    setTotal(total - transactions[index].amount)
+    setTotal(total - transactions[index].amount) // subtract from the total when deleting a transaction
     updatedTransactions.splice(index, 1);
-    setTransactions(updatedTransactions);
+    setTransactions(updatedTransactions); // deletes the selected transaction
   };
-  const changeTotal = (amount:number) => {
+
+  const changeTotal = (amount:number) => { // add to the total when adding a transaction
     setTotal(total + amount)
   }
 
