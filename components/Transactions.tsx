@@ -17,18 +17,15 @@ interface TransactionProps {
 }
 
 function Transactions( {category, amount, deleteTransaction }: TransactionProps) {
-    let imageSrc = `${category}.png`;
-    if(category !== "food" && category !== "entertainment" && category !== "shopping"){
-        imageSrc = 'other.png'
-    }
-
-    
+  let imageSrc = `${category}.png`;
+  if(category !== "food" && category !== "entertainment" && category !== "shopping"){
+    imageSrc = 'other.png'
+  }
   return (
-    
     <HStack p={2} color="black" alignContent={"center"}>
-        <img src = {imageSrc} alt = {category} width = "2%"></img>
-        <Text>{category} ${amount}</Text>
-        <Button onClick={deleteTransaction}>Delete</Button>
+      <img src = {imageSrc} alt = {category} width = "2%"></img>
+      <Text>{category} ${amount}</Text>
+      <Button onClick={deleteTransaction}>Delete</Button>
     </HStack>
   );
 }

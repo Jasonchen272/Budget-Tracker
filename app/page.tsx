@@ -29,7 +29,6 @@ interface Transaction {
 
 function HomePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [amount, setAmount] = useState<number>(0);
 
   const addTransaction = (newTransaction: Transaction) => {
     setTransactions([...transactions, newTransaction]);
