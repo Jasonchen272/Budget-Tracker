@@ -14,12 +14,12 @@ interface TransactionItemProps {
     deleteTransaction: (index: number) => void;
 }
 
-function TransactionItem({index, transaction, deleteTransaction }:TransactionItemProps) {
+function TransactionItem({index, transaction}:TransactionItemProps) {
   return (
     <Box>
     <li>    
         {/* list of transactions */}
-      <Transactions category = {transaction.category} amount = {transaction.amount}  deleteTransaction={() => deleteTransaction(index)}></Transactions>
+      <Transactions category = {transaction.category} amount = {transaction.amount}></Transactions>
     </li>
   </Box>
   );
