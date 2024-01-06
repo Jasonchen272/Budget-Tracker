@@ -29,11 +29,17 @@ interface Transaction {
   amount: number;
 }
 
+interface Chart {
+  name: string;
+  value: number;
+}
+
 function HomePage() {
-  const data = [{name: "food", value: 10}, {name:"shop", value: 10}]
+  const data = [{name: "Food", value: 0}, {name:"Shopping", value: 0}, {name: "Entertainment", value: 0}, {name:"Other", value: 0}]
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
+  const [pieData, setPieData] = useState<Chart[]>(data);
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
@@ -46,8 +52,12 @@ function HomePage() {
     setTransactions(updatedTransactions); // deletes the selected transaction
   };
 
-  const changeTotal = (amount:number) => { // add to the total when adding a transaction
-    setTotal(total + amount)
+  const changeTotal = (index :number) => { // add to the total when adding a transaction
+    setTotal(total + transactions[index].amount)
+  }
+
+  const updatePieData = () => {
+
   }
 
   const currentDate = new Date();
