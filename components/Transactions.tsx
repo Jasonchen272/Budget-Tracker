@@ -15,7 +15,7 @@ interface TransactionProps {
 
 function Transactions( {category, amount, deleteTransaction }: TransactionProps) {// actual transaction that is displayed on screen
   let imageSrc = `${category}.png`; //matches picture with category
-  if(category !== "food" && category !== "entertainment" && category !== "shopping"){   //if it is not a given category then it is other.png
+  if(category !== "Food" && category !== "Entertainment" && category !== "Shopping"){   //if it is not a given category then it is other.png
     imageSrc = 'other.png'
   }
   return (

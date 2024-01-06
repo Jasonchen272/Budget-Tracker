@@ -42,10 +42,10 @@ function TransactionAdder({ addTransaction,updateTotal }: TransactionFormProps) 
       <Flex alignItems={'center'} justifyContent={'center'}>
         <HStack mt={30}>
           <Select placeholder = {"Select Catagory"}defaultValue={"other"} id = "userCategory"  onChange={(e) => handleCat(e)} value = {cat} bgColor = "white">
-            <option value='food'>Food</option>
-            <option value='entertainment'>Entertainment</option> 
-            <option value='shopping'>Shopping</option>
-            <option value='other'>Other</option>
+            <option value='Food'>Food</option>
+            <option value='Entertainment'>Entertainment</option> 
+            <option value='Shopping'>Shopping</option>
+            <option value='Other'>Other</option>
           </Select>
           <NumberInput onBlur={(e) => handleAmount(e)}  >
             <NumberInputField placeholder='Cost'></NumberInputField>

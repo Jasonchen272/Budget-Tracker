@@ -17,7 +17,7 @@ function TransactionList({transactions, deleteTransaction}:TransactionListProps)
   return (
     <Box>
     <Text mt={30} color = "black">Transactions</Text>
-    <ul>
+    <ul style={{ listStyle: 'none' , marginLeft: '30px', fontSize: '20px'}}>
       {transactions.map((transaction, index) => (
         <TransactionItem key={index} index={index} transaction={transaction} deleteTransaction={deleteTransaction}/>
       ))}
