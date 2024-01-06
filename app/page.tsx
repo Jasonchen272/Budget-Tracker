@@ -36,13 +36,12 @@ function HomePage() {
   };
   const deleteTransaction = (index: number) => {
     const updatedTransactions = [...transactions];
-
-    const deletedTransAmount: number = updatedTransactions[index].amount;
-    setTotal(total - deletedTransAmount); // subtract amount
-
     updatedTransactions.splice(index, 1);
     setTransactions(updatedTransactions);
   };
+  const changeTotal = (amount:number) => {
+    setTotal(total + amount)
+  }
 
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
@@ -52,7 +51,7 @@ function HomePage() {
       <Header/>
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
-        <TransactionAdder addTransaction={addTransaction} />
+        <TransactionAdder addTransaction={addTransaction} updateTotal={changeTotal}/>
         <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
       </Box>
     </Box>
