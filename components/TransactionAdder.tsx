@@ -8,17 +8,20 @@ interface Transaction {
 }
 interface TransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
+  updateTotal:(amount:number) => void;
 }
   
 
-function TransactionAdder({ addTransaction }: TransactionFormProps) {
+function TransactionAdder({ addTransaction,updateTotal }: TransactionFormProps) {
+  
     const [cat, setCat] = useState<string>('');
-    const [amount, setAmount] = useState<string>('');
+    const [amount, setAmount] = useState<number>(0);
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const newTransaction = () => {
-        addTransaction({ category:cat, amount: parseFloat(amount) });
-        const updatedTransactions = [...transactions, { category: cat, amount: parseFloat(amount) || 0 }];
+        addTransaction({ category:cat, amount: amount });
+        const updatedTransactions = [...transactions, { category: cat, amount: amount || 0 }];
         setTransactions(updatedTransactions);
+        updateTotal(amount);
 
     };
     const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -27,8 +30,13 @@ function TransactionAdder({ addTransaction }: TransactionFormProps) {
     }
     const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        setAmount(e.target.value)
-        e.target.value = '0';
+        if(e.target.value == ''){
+          setAmount(0);
+        }
+        else{
+          setAmount(parseFloat(e.target.value))
+        }
+        e.target.value = '';
     }
 
     return (
@@ -43,7 +51,7 @@ function TransactionAdder({ addTransaction }: TransactionFormProps) {
           <NumberInput onBlur={(e) => handleAmount(e)}  >
             <NumberInputField placeholder='Cost'></NumberInputField>
           </NumberInput>
-          <button onClick = {newTransaction}>Add</button >
+          <button onClick = {newTransaction}>Add</button>
        </HStack>
       </Flex>
     );

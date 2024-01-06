@@ -29,15 +29,21 @@ interface Transaction {
 
 function HomePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [total, setTotal] = useState<number>(0);
 
   const addTransaction = (newTransaction: Transaction) => {
     setTransactions([...transactions, newTransaction]);
   };
   const deleteTransaction = (index: number) => {
     const updatedTransactions = [...transactions];
+    setTotal(total - updatedTransactions[index].amount);
+
     updatedTransactions.splice(index, 1);
     setTransactions(updatedTransactions);
   };
+  const changeTotal = (amount:number) => {
+    setTotal(total + amount)
+  }
 
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
@@ -45,9 +51,9 @@ function HomePage() {
   return (
     <Box textAlign={"center"} bg="white">
       <Header/>
-      <SubHeader curr_month={currentMonth} total={0}/>
+      <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
-        <TransactionAdder addTransaction={addTransaction} />
+        <TransactionAdder addTransaction={addTransaction} updateTotal={changeTotal}/>
         <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
       </Box>
     </Box>
