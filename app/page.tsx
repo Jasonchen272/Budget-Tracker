@@ -40,6 +40,7 @@ function HomePage() {
     updatedTransactions.splice(index, 1);
     setTransactions(updatedTransactions);
   };
+  console.log("pig")
 
     const currentDate = new Date();
     const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
