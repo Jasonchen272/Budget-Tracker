@@ -16,7 +16,7 @@ interface TransactionListProps {
 function TransactionList({transactions, deleteTransaction}:TransactionListProps) { //converts the transaction array to a transactionItem list
   return (
     <Box>
-    <Text color = "black">Transactions</Text>
+    <Text mt={30} color = "black">Transactions</Text>
     <ul>
       {transactions.map((transaction, index) => (
         <TransactionItem key={index} index={index} transaction={transaction} deleteTransaction={deleteTransaction}/>

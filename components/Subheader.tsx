@@ -24,10 +24,10 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
     <Flex alignItems={'center'} justifyContent={'center'}>
       <VStack alignItems={'center'} justifyContent={'center'}>
         <HStack>
-          <Box mt={30} color="black" fontSize={30} fontWeight={700}>
+          <Box color="black" fontSize={40} fontWeight={700}>
             {month}
           </Box>
-          <Box ml={30} mt={30} color="black" fontSize={30} fontWeight={700}>
+          <Box ml={30} color="black" fontSize={40} fontWeight={700}>
             ${total}
           </Box>
         </HStack>

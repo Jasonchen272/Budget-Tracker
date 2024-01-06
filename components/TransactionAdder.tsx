@@ -39,8 +39,8 @@ function TransactionAdder({ addTransaction,updateTotal }: TransactionFormProps) 
     }
 
     return (
-      <Flex justify="space-between">
-        <HStack mr = {50}>
+      <Flex alignItems={'center'} justifyContent={'center'}>
+        <HStack mt={30}>
           <Select placeholder = {"Select Catagory"}defaultValue={"other"} id = "userCategory"  onChange={(e) => handleCat(e)} value = {cat} bgColor = "white">
             <option value='food'>Food</option>
             <option value='entertainment'>Entertainment</option> 
