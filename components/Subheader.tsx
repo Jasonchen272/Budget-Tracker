@@ -21,7 +21,7 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
     setMonth(e.target.value)
   }
   return (
-    <Flex>
+    <Flex alignItems={'center'} justifyContent={'center'}>
       <Box>
         <Select 
           mt={30}
