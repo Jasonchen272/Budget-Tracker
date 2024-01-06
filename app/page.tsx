@@ -52,8 +52,8 @@ function HomePage() {
     setTransactions(updatedTransactions); // deletes the selected transaction
   };
 
-  const changeTotal = (index :number) => { // add to the total when adding a transaction
-    setTotal(total + transactions[index].amount)
+  const changeTotal = (amount: number) => { // add to the total when adding a transaction
+    setTotal(total + amount)
   }
 
   const updatePieData = () => {
@@ -68,7 +68,7 @@ function HomePage() {
       <Header/>
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
-        <TransactionAdder addTransaction={addTransaction} updateTotal={changeTotal}/>
+        <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal}/>
         <Text fontSize={30}mb={10} mt={30} color = "black">Transactions</Text>
         <Flex>
           <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
