@@ -2,9 +2,6 @@ import React from 'react';
 import { Box, Heading,Text, Link, Flex, HStack, Button } from '@chakra-ui/react';
 import TransactionList from './TransactionList';
 
-interface TransactionList{
-  transactionList: TransactionList;
-}
 type Transactions = {
     amount: number;
     category: string;
@@ -16,9 +13,9 @@ interface TransactionProps {
   deleteTransaction: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function Transactions( {category, amount, deleteTransaction }: TransactionProps) {
-  let imageSrc = `${category}.png`;
-  if(category !== "food" && category !== "entertainment" && category !== "shopping"){
+function Transactions( {category, amount, deleteTransaction }: TransactionProps) {// actual transaction that is displayed on screen
+  let imageSrc = `${category}.png`; //matches picture with category
+  if(category !== "food" && category !== "entertainment" && category !== "shopping"){   //if it is not a given category then it is other.png
     imageSrc = 'other.png'
   }
   return (

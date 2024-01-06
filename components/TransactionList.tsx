@@ -13,7 +13,7 @@ interface TransactionListProps {
 }
   
 
-function TransactionList({transactions, deleteTransaction}:TransactionListProps) {
+function TransactionList({transactions, deleteTransaction}:TransactionListProps) { //converts the transaction array to a transactionItem list
   return (
     <Box>
     <Text color = "black">Transactions</Text>
