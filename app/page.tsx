@@ -36,8 +36,6 @@ function HomePage() {
   };
   const deleteTransaction = (index: number) => {
     const updatedTransactions = [...transactions];
-    setTotal(total - updatedTransactions[index].amount);
-
     updatedTransactions.splice(index, 1);
     setTransactions(updatedTransactions);
   };
