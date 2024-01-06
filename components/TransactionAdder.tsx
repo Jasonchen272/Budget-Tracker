@@ -19,7 +19,7 @@ function TransactionAdder({ addTransaction }: TransactionFormProps) {
         addTransaction({ category:cat, amount: parseFloat(amount) });
         const updatedTransactions = [...transactions, { category: cat, amount: parseFloat(amount) || 0 }];
         setTransactions(updatedTransactions);
-
+        
     };
     const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
