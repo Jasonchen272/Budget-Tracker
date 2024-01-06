@@ -19,11 +19,13 @@ function Transactions( {category, amount, deleteTransaction }: TransactionProps)
     imageSrc = 'other.png'
   }
   return (
-    <HStack p={2} color="black" alignContent={"center"}>
-      <img src = {imageSrc} alt = {category} width = "2%"></img>
-      <Text>{category} ${amount}</Text>
-      <Button onClick={deleteTransaction}>Delete</Button>
-    </HStack>
+    <Flex alignContent={"center"}>
+      <HStack w="20%" color="black" mr={0}>
+        <img src = {imageSrc} alt = {category} width = "20%"></img>
+        <Text>{category} ${amount}</Text>
+      </HStack>
+      <Button margin={'auto'} ml={0} onClick={deleteTransaction}>Delete</Button>
+    </Flex>
   );
 }
 
