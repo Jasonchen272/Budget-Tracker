@@ -60,16 +60,18 @@ function HomePage() {
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} updateTotal={changeTotal}/>
         <Text fontSize={30}mb={10} mt={30} color = "black">Transactions</Text>
-        <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
-         <PieChart width={400} height={400}>
-          <Pie 
-          dataKey={"value"}
-          data={data}
-          cx={200}
-          cy={200}
-          label></Pie>
-        </PieChart> 
-
+        <Flex>
+          <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
+          <PieChart width={400} height={400}>
+            <Pie 
+            dataKey={"value"}
+            data={data}
+            cx={200}
+            cy={200}
+            label>
+            </Pie>
+          </PieChart> 
+        </Flex>
       </Box>
     </Box>
   );

@@ -20,7 +20,7 @@ function Transactions( {category, amount, deleteTransaction }: TransactionProps)
   }
   return (
     <Flex alignContent={"center"}>
-      <HStack w="20%" color="black" mr={0}>
+      <HStack width={"100%"} color="black" mr={10}>
         <img src = {imageSrc} alt = {category} width = "60px"></img>
         <Text>{category} ${amount}</Text>
       </HStack>
