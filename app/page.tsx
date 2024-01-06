@@ -34,6 +34,11 @@ function HomePage() {
   const addTransaction = (newTransaction: Transaction) => {
     setTransactions([...transactions, newTransaction]);
   };
+  const deleteTransaction = (index: number) => {
+    const updatedTransactions = [...transactions];
+    updatedTransactions.splice(index, 1);
+    setTransactions(updatedTransactions);
+  };
 
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
