@@ -36,13 +36,13 @@ function HomePage() {
   };
   const deleteTransaction = (index: number) => {
     const updatedTransactions = [...transactions];
+    setTotal(total - transactions[index].amount)
     updatedTransactions.splice(index, 1);
     setTransactions(updatedTransactions);
   };
   const changeTotal = (amount:number) => {
     setTotal(total + amount)
   }
-  console.log("pig")
 
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });

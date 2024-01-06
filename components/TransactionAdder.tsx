@@ -21,7 +21,7 @@ function TransactionAdder({ addTransaction,updateTotal }: TransactionFormProps) 
         addTransaction({ category:cat, amount: amount });
         const updatedTransactions = [...transactions, { category: cat, amount: amount || 0 }];
         setTransactions(updatedTransactions);
-
+        updateTotal(amount);
     };
     const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
