@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Box, Flex, Select } from '@chakra-ui/react';
+import { Box, Flex, HStack, Select, VStack } from '@chakra-ui/react';
 
 interface SubHeaderProps {
   curr_month: string;
@@ -22,30 +22,33 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
   }
   return (
     <Flex alignItems={'center'} justifyContent={'center'}>
-      <Box>
-        <Select 
-          mt={30}
-          placeholder="Month"
-          borderColor='gray.700'
-          color="black" 
-          fontSize={18} 
-          bg={'white'}
-          textAlign="center"
-          py="2" 
-          onChange={(e) => handleMonth(e)}>
-            {months.map((month, index) => (
-            <option key={index} value={month}>
-                {month}
-            </option>
-            ))}
-        </Select>
-      </Box>
-      <Box ml={30} mt={30} color="black" fontSize={30} fontWeight={700} w="10%">
-        {month}
-      </Box>
-      <Box ml={30} mt={30} color="black" fontSize={30} fontWeight={700}>
-        ${total}
-      </Box>
+      <VStack alignItems={'center'} justifyContent={'center'}>
+        <HStack>
+          <Box mt={30} color="black" fontSize={30} fontWeight={700}>
+            {month}
+          </Box>
+          <Box ml={30} mt={30} color="black" fontSize={30} fontWeight={700}>
+            ${total}
+          </Box>
+        </HStack>
+        <Box>
+          <Select 
+            placeholder="Month"
+            borderColor='gray.700'
+            color="black" 
+            fontSize={18} 
+            bg={'white'}
+            textAlign="center"
+            py="2" 
+            onChange={(e) => handleMonth(e)}>
+              {months.map((month, index) => (
+              <option key={index} value={month}>
+                  {month}
+              </option>
+              ))}
+          </Select>
+        </Box>
+      </VStack>
     </Flex>
   );
 }
