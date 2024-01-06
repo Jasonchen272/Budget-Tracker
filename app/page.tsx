@@ -6,6 +6,7 @@ import Transactions from '@/components/Transactions';
 import TransactionAdder from '@/components/TransactionAdder';
 import TransactionList from '@/components/TransactionList';
 import TrasactionAdder from '@/components/TransactionAdder'
+import { PieChart, Pie } from 'recharts';
 
 import {
   Box,
@@ -20,6 +21,7 @@ import {
   Select,
   NumberInput,
   NumberInputField,
+  Tooltip,
 } from '@chakra-ui/react';
 
 interface Transaction {
@@ -28,6 +30,8 @@ interface Transaction {
 }
 
 function HomePage() {
+  const data = [{name: "food", value: 10}, {name:"shop", value: 10}]
+
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
 
@@ -55,7 +59,17 @@ function HomePage() {
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} updateTotal={changeTotal}/>
+        <Text fontSize={30}mb={10} mt={30} color = "black">Transactions</Text>
         <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
+         <PieChart width={400} height={400}>
+          <Pie 
+          dataKey={"value"}
+          data={data}
+          cx={200}
+          cy={200}
+          label></Pie>
+        </PieChart> 
+
       </Box>
     </Box>
   );

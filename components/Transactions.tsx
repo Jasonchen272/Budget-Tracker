@@ -21,7 +21,7 @@ function Transactions( {category, amount, deleteTransaction }: TransactionProps)
   return (
     <Flex alignContent={"center"}>
       <HStack w="20%" color="black" mr={0}>
-        <img src = {imageSrc} alt = {category} width = "20%"></img>
+        <img src = {imageSrc} alt = {category} width = "60px"></img>
         <Text>{category} ${amount}</Text>
       </HStack>
       <Button margin={'auto'} ml={0} onClick={deleteTransaction}>Delete</Button>
