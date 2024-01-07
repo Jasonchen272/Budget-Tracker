@@ -50,48 +50,27 @@ function HomePage() {
     setTotal(total - transactions[index].amount) // subtract from the total when deleting a transaction
     updatedTransactions.splice(index, 1);
     setTransactions(updatedTransactions); // deletes the selected transaction
+    updatePieData(-updatedTransactions[index].amount, updatedTransactions[index].category)
   };
 
   const changeTotal = (amount: number) => { // add to the total when adding a transaction
     setTotal(total + amount)
   }
 
-  const updatePieData = (index: number, amount: number, transactionList: Transaction[]) => {
-    if(transactionList[index].category == 'Food'){
-      const newData: Chart[] = [
-        {name: "Food", value: pieData[0].value + amount}, 
-        {name:"Shopping", value: pieData[1].value}, 
-        {name: "Entertainment", value: pieData[2].value}, 
-        {name:"Other", value: pieData[3].value}
-      ];
+  const updatePieData = (amount: number, category: string) => {
+    const categories = ['Food', 'Shopping', 'Entertainment', 'Other'];
+    console.log(category);
+    if (categories.includes(category)) {
+      const newData: Chart[] = pieData.map((item) => {
+        if (category === item.name) {
+          return { ...item, value: item.value + amount };
+        }
+        return item;
+      });
       setPieData(newData);
+    }else{
+      console.log("Enter A Category");
     }
-    else if(transactionList[index].category == 'Shopping'){
-      const newData: Chart[] = [
-        {name: "Food", value: pieData[0].value}, 
-        {name:"Shopping", value: pieData[1].value + amount}, 
-        {name: "Entertainment", value: pieData[2].value}, 
-        {name:"Other", value: pieData[3].value}
-      ];
-      setPieData(newData);
-    }
-    else if(transactionList[index].category == 'Entertainment'){
-      const newData: Chart[] = [
-        {name: "Food", value: pieData[0].value}, 
-        {name:"Shopping", value: pieData[1].value}, 
-        {name: "Entertainment", value: pieData[2].value + amount}, 
-        {name:"Other", value: pieData[3].value}
-      ];
-      setPieData(newData);
-    }else {
-      const newData: Chart[] = [
-        {name: "Food", value: pieData[0].value}, 
-        {name:"Shopping", value: pieData[1].value}, 
-        {name: "Entertainment", value: pieData[2].value}, 
-        {name:"Other", value: pieData[3].value + amount}
-      ];
-      setPieData(newData);
-    }   
   }
 
   const currentDate = new Date();

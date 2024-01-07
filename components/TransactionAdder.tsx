@@ -9,7 +9,7 @@ interface Transaction {
 interface TransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
   changeTotal:(amount:number) => void;
-  updatePieData: (index: number, amount: number, transactionList: Transaction[]) => void;
+  updatePieData: (amount: number, category: string) => void;
 }
   
 
@@ -23,7 +23,7 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData }: Transa
         const updatedTransactions = [...transactions, { category: cat, amount: amount || 0 }];
         setTransactions(updatedTransactions); // update the transaction list
         changeTotal(amount); // updates the total spent
-        updatePieData(updatedTransactions.length - 1, amount, updatedTransactions);
+        updatePieData(amount, cat);
 
     };
     const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => { // set category
