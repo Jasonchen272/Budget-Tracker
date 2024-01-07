@@ -90,7 +90,7 @@ function HomePage() {
             data={pieData}
             cx={200}
             cy={200}
-            label>
+            label={({ value }) => (value !== 0 ? `$${value}` : '')}>
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.fill} />
             ))}
