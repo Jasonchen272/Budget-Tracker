@@ -110,7 +110,8 @@ function HomePage() {
         </Select>
         </Box>
         
-        </HStack>        <Flex >
+        </HStack>        
+        <Flex >
           <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
           <PieChart width={400} height={400}>
             <Pie 
