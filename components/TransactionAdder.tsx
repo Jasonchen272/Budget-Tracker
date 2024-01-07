@@ -53,10 +53,15 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData }: Transa
 
     const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
       e.preventDefault();
+      const dateFormatRegex = /^\d{2}-\d{2}-\d{4}$/;
       if (e.target.value == ''){
         setDate(formattedDate);
       }else{
-        setDate(e.target.value);
+        if (dateFormatRegex.test(e.target.value)) {
+          setDate(e.target.value);
+        }else{
+          setDate(formattedDate);
+        }
       }
     }
 
@@ -73,7 +78,7 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData }: Transa
             <NumberInputField placeholder='Cost' style={{ backgroundColor: 'white' }} ></NumberInputField>
           </NumberInput>
           <NumberInput onBlur={(e) => handleDate(e)}  >
-            <NumberInputField placeholder='M-D-Y' style={{ backgroundColor: 'white' }} ></NumberInputField>
+            <NumberInputField width={'fit-content'} placeholder='MM-DD-YYYY' style={{ backgroundColor: 'white' }} ></NumberInputField>
           </NumberInput>
           <Button bg="white" onClick = {newTransaction}>Add</Button>
        </HStack>
