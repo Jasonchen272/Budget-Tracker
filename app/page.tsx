@@ -6,7 +6,7 @@ import Transactions from '@/components/Transactions';
 import TransactionAdder from '@/components/TransactionAdder';
 import TransactionList from '@/components/TransactionList';
 import TrasactionAdder from '@/components/TransactionAdder'
-import { PieChart, Pie, Cell, LabelList,} from 'recharts';
+import { PieChart, Pie, Cell} from 'recharts';
 
 import {
   Box,
@@ -76,7 +76,10 @@ function HomePage() {
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
   
   return (
-    <Box textAlign={"center"} bg="white">
+    <Box textAlign={"center"} style={{
+      background: 'linear-gradient(135deg, #f8f8f8, #e0e0e0)', 
+      height: '100vh',
+    }}>
       <Header/>
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
@@ -90,11 +93,11 @@ function HomePage() {
             data={pieData}
             cx={200}
             cy={200}
+            labelLine={false}
             label={({ value }) => (value !== 0 ? `$${value}` : '')}>
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.fill} />
             ))}
-
             </Pie>
           </PieChart> 
         </Flex>

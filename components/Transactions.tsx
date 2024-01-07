@@ -55,7 +55,7 @@ function Transactions( {category, amount, deleteTransaction }: TransactionProps)
         </div>
         <Text>{category} ${amount}</Text>
       </HStack>
-      <Button margin={'auto'} ml={0} onClick={deleteTransaction}>Delete</Button>
+      <Button padding={'0 25px'} margin={'auto'} ml={0} onClick={deleteTransaction}>Delete</Button>
     </Flex>
   );
 }

@@ -34,7 +34,6 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
         <Box>
           <Select 
             placeholder="Month"
-            borderColor='gray.700'
             color="black" 
             fontSize={18} 
             bg={'white'}

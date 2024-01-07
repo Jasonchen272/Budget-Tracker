@@ -44,16 +44,16 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData }: Transa
     return (
       <Flex alignItems={'center'} justifyContent={'center'}>
         <HStack mt={30}>
-          <Select placeholder = {"Select Catagory"}defaultValue={"other"} id = "userCategory"  onChange={(e) => handleCat(e)} value = {cat} bgColor = "white">
+          <Select placeholder = {"Select Catagory"} defaultValue={"other"} id = "userCategory"  onChange={(e) => handleCat(e)} value = {cat} bgColor = "white">
             <option value='Food'>Food</option>
             <option value='Entertainment'>Entertainment</option> 
             <option value='Shopping'>Shopping</option>
             <option value='Other'>Other</option>
           </Select>
           <NumberInput onBlur={(e) => handleAmount(e)}  >
-            <NumberInputField placeholder='Cost'></NumberInputField>
+            <NumberInputField placeholder='Cost' style={{ backgroundColor: 'white' }} ></NumberInputField>
           </NumberInput>
-          <button onClick = {newTransaction}>Add</button>
+          <Button onClick = {newTransaction}>Add</Button>
        </HStack>
       </Flex>
     );
