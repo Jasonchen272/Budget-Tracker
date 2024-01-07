@@ -52,7 +52,7 @@ function Transactions( {category, amount, date, deleteTransaction }: Transaction
 
   return (
     <HStack>
-      <HStack width={"350px"} color="black" mr={10}>
+      <HStack width={"400px"} color="black" mr={10}>
         <div style={circleContainerStyle}>
           {icon}
         </div>
