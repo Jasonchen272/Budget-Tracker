@@ -58,6 +58,17 @@ function HomePage() {
     const formattedValue = (total + amount).toFixed(2)
     setTotal(parseFloat(formattedValue));
   }
+  const sort = (sortBy:string) =>{
+    const sorted  = [...transactions];
+    switch(sortBy){
+      case 'Time':
+
+      case 'Category':
+      case 'Amount' :
+
+    }
+    setTransactions(sorted);
+  }
 
   const updatePieData = (amount: number, category: string) => {
     const categories = ['Food', 'Shopping', 'Entertainment', 'Other'];
@@ -86,8 +97,20 @@ function HomePage() {
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData}/>
-        <Text fontSize={30} mb={10} mt={30} color = "black">Transactions</Text>
-        <Flex >
+        <HStack>
+        <Text fontSize={30} m={10} p={2} color = "black">Transactions</Text>
+        <Text>Sort by:</Text>
+        <Box>
+        <Select 
+          placeholder="Select one"
+          defaultValue={'Time'}>
+            <option value='Time'>Time</option>
+            <option value='Category'>Category</option> 
+            <option value='Amount'>Amount</option>
+        </Select>
+        </Box>
+        
+        </HStack>        <Flex >
           <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
           <PieChart width={400} height={400}>
             <Pie 
