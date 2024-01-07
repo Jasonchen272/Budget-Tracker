@@ -59,19 +59,19 @@ function HomePage() {
 
   const updatePieData = (amount: number, category: string) => {
     const categories = ['Food', 'Shopping', 'Entertainment', 'Other'];
-    console.log(category);
-    if (categories.includes(category)) {
-      const newData: Chart[] = pieData.map((item) => {
-        if (category === item.name) {
-          return { ...item, value: item.value + amount };
-        }
-        return item;
-      });
-      setPieData(newData);
-    }else{
-      console.log("Enter A Category");
+  
+    if (!categories.includes(category)) {
+      category = "Other";
     }
-  }
+    const newData: Chart[] = pieData.map((item) => {
+      if (category === item.name) {
+        return { ...item, value: item.value + amount };
+      }
+      return item;
+    });
+  
+    setPieData(newData);
+  };
 
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
