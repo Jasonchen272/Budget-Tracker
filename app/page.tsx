@@ -70,17 +70,27 @@ function HomePage() {
     let i, key, j;
     switch(sortBy){
       case 'Time':
-        console.log(2)
+        let date;
+        for (i = 1; i < sorted.length; i++){
+          key = sorted[i];
+          date = key.date;
+          j = i - 1;
+          let date_split = date.split('-');
+          let sort_date_split = sorted[j].date.split('-');
+          while (j >= 0 && sort_date_split > date_split){
+            sorted[j + 1] = sorted[j];
+            j -= 1;
+          }
+          sorted[j + 1] = key;
+        }
         break;
       case 'Category':
         let category;  
-        for (i = 1; i < sorted.length; i++) 
-        {  
+        for (i = 1; i < sorted.length; i++){  
             key = sorted[i];  
             category = key.category
             j = i - 1;  
-            while (j >= 0 && sorted[j].category > category) 
-            {  
+            while (j >= 0 && sorted[j].category > category) {  
                 sorted[j + 1] = sorted[j];  
                 j = j - 1;  
             }  
@@ -89,13 +99,11 @@ function HomePage() {
         break;
       case 'Amount' :
         let amount;  
-        for (i = 1; i < sorted.length; i++) 
-        {  
+        for (i = 1; i < sorted.length; i++){  
             key = sorted[i];  
             amount = key.amount
             j = i - 1;  
-            while (j >= 0 && sorted[j].amount > amount) 
-            {  
+            while (j >= 0 && sorted[j].amount > amount){  
                 sorted[j + 1] = sorted[j];  
                 j = j - 1;  
             }  
