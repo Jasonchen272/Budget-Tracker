@@ -17,7 +17,11 @@ interface TransactionFormProps {
 
 function TransactionAdder({ addTransaction, changeTotal, updatePieData }: TransactionFormProps) {
     const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleDateString('en-US');
+    const formattedDate = new Date(currentDate).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).replace(/\//g, '-');
     const [cat, setCat] = useState<string>('');
     const [amount, setAmount] = useState<number>(0);
     const [date, setDate] = useState<string>(formattedDate);
@@ -69,7 +73,7 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData }: Transa
             <NumberInputField placeholder='Cost' style={{ backgroundColor: 'white' }} ></NumberInputField>
           </NumberInput>
           <NumberInput onBlur={(e) => handleDate(e)}  >
-            <NumberInputField placeholder='M/D/Y' style={{ backgroundColor: 'white' }} ></NumberInputField>
+            <NumberInputField placeholder='M-D-Y' style={{ backgroundColor: 'white' }} ></NumberInputField>
           </NumberInput>
           <Button bg="white" onClick = {newTransaction}>Add</Button>
        </HStack>
