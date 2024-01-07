@@ -56,8 +56,20 @@ function HomePage() {
     setTotal(total + amount)
   }
 
-  const updatePieData = () => {
-
+  const updatePieData = (index: number, amount: number) => {
+    console.log(index)
+    console.log(transactions)
+    if(transactions[index].category == 'Food'){
+      data[0].value += amount;
+    }
+    else if(transactions[index].category == 'Shopping'){
+      data[1].value += amount;
+    }
+    else if(transactions[index].category == 'Entertainment'){
+      data[2].value += amount;
+    }else {
+      data[3].value += amount;
+    }   
   }
 
   const currentDate = new Date();
@@ -68,7 +80,7 @@ function HomePage() {
       <Header/>
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
-        <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal}/>
+        <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData}/>
         <Text fontSize={30}mb={10} mt={30} color = "black">Transactions</Text>
         <Flex>
           <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
