@@ -4,17 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faFilm, faQuestionCircle, faCartShopping} from '@fortawesome/free-solid-svg-icons';
 
 type Transactions = {
-    amount: number;
-    category: string;
-  };
+  amount: number;
+  category: string;
+  date: string;
+};
   
 interface TransactionProps {
   category: string;
   amount: number;
+  date: string;
   deleteTransaction: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function Transactions( {category, amount, deleteTransaction }: TransactionProps) {// actual transaction that is displayed on screen
+function Transactions( {category, amount, date, deleteTransaction }: TransactionProps) {// actual transaction that is displayed on screen
   let icon;
   let bgColor;
   switch (category) {
@@ -50,11 +52,12 @@ function Transactions( {category, amount, deleteTransaction }: TransactionProps)
 
   return (
     <HStack>
-      <HStack width={"250px"} color="black" mr={10}>
+      <HStack width={"350px"} color="black" mr={10}>
         <div style={circleContainerStyle}>
           {icon}
         </div>
-        <Text>{category} ${amount}</Text>
+        <HStack><Text fontWeight="bold">{category}</Text><Text> ${amount}</Text><Text> &nbsp;{date}</Text></HStack>
+        
       </HStack>
       <Button margin={'auto'} ml={0} onClick={deleteTransaction}>Delete</Button>
     </HStack>

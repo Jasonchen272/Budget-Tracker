@@ -27,6 +27,7 @@ import {
 interface Transaction {
   category: string;
   amount: number;
+  date: string;
 }
 
 interface Chart {

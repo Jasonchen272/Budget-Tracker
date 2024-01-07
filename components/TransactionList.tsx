@@ -6,6 +6,7 @@ import { Archivo_Black } from 'next/font/google';
 type Transactions = {
   amount: number;
   category: string;
+  date: string
 };
 
 interface TransactionListProps {
