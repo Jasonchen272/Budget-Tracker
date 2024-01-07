@@ -1,5 +1,5 @@
 'use client';
-import React, {useState} from 'react';
+import React, {use, useState} from 'react';
 import Header from '@/components/Header';
 import SubHeader from '@/components/Subheader'
 import Transactions from '@/components/Transactions';
@@ -23,6 +23,7 @@ import {
   NumberInputField,
   Tooltip,
 } from '@chakra-ui/react';
+import { createECDH } from 'crypto';
 
 interface Transaction {
   category: string;
@@ -41,6 +42,7 @@ function HomePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [pieData, setPieData] = useState<Chart[]>(data);
+  const [sortType, setSortType] = useState<string>('Time');
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
@@ -58,17 +60,35 @@ function HomePage() {
     const formattedValue = (total + amount).toFixed(2)
     setTotal(parseFloat(formattedValue));
   }
+
+  const handleSortType = (e:React.ChangeEvent<HTMLSelectElement>) => {
+    e.preventDefault();
+    sort(e.target.value)
+  }
   const sort = (sortBy:string) =>{
     const sorted  = [...transactions];
+    let i, key, j;
     switch(sortBy){
       case 'Time':
         console.log(2)
         break;
       case 'Category':
-        console.log(2)
+        let category;  
+        for (i = 1; i < sorted.length; i++) 
+        {  
+            key = sorted[i];  
+            category = key.category
+            j = i - 1;  
+            while (j >= 0 && sorted[j].category > category) 
+            {  
+                sorted[j + 1] = sorted[j];  
+                j = j - 1;  
+            }  
+            sorted[j + 1] = key;  
+        }  
         break;
       case 'Amount' :
-        let i, key, j, amount;  
+        let amount;  
         for (i = 1; i < sorted.length; i++) 
         {  
             key = sorted[i];  
@@ -123,7 +143,7 @@ function HomePage() {
           bgColor = "white"
           placeholder="Select one"
           defaultValue={'Time'}
-          onChange = {()=>sort('Amount')}>
+          onChange = {(e)=>handleSortType(e)}>
             <option value='Time'>Time</option>
             <option value='Category'>Category</option> 
             <option value='Amount'>Amount</option> 
