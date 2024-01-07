@@ -62,17 +62,34 @@ function HomePage() {
     const sorted  = [...transactions];
     switch(sortBy){
       case 'Time':
-
+        console.log(2)
+        break;
       case 'Category':
+        console.log(2)
+        break;
       case 'Amount' :
-
-    }
-    setTransactions(sorted);
+        let i, key, j, amount;  
+        for (i = 1; i < sorted.length; i++) 
+        {  
+            key = sorted[i];  
+            amount = key.amount
+            j = i - 1;  
+            while (j >= 0 && sorted[j].amount > amount) 
+            {  
+                sorted[j + 1] = sorted[j];  
+                j = j - 1;  
+            }  
+            sorted[j + 1] = key;  
+        }  
+        break;
+    } 
+    console.log(sorted)
+    setTransactions(sorted)
   }
 
   const updatePieData = (amount: number, category: string) => {
     const categories = ['Food', 'Shopping', 'Entertainment', 'Other'];
-  
+
     if (!categories.includes(category)) {
       category = "Other";
     }
@@ -103,10 +120,11 @@ function HomePage() {
         <Box>
         <Select 
           placeholder="Select one"
-          defaultValue={'Time'}>
+          defaultValue={'Time'}
+          onChange = {()=>sort('Amount')}>
             <option value='Time'>Time</option>
             <option value='Category'>Category</option> 
-            <option value='Amount'>Amount</option>
+            <option value='Amount'>Amount</option> 
         </Select>
         </Box>
         
