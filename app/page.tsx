@@ -6,7 +6,7 @@ import Transactions from '@/components/Transactions';
 import TransactionAdder from '@/components/TransactionAdder';
 import TransactionList from '@/components/TransactionList';
 import TrasactionAdder from '@/components/TransactionAdder'
-import { PieChart, Pie } from 'recharts';
+import { PieChart, Pie, Cell, LabelList} from 'recharts';
 
 import {
   Box,
@@ -35,7 +35,7 @@ interface Chart {
 }
 
 function HomePage() {
-  const data = [{name: "Food", value: 0}, {name:"Shopping", value: 0}, {name: "Entertainment", value: 0}, {name:"Other", value: 0}];
+  const data = [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}];
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
@@ -48,9 +48,9 @@ function HomePage() {
   const deleteTransaction = (index: number) => {
     const updatedTransactions = [...transactions];
     setTotal(total - transactions[index].amount) // subtract from the total when deleting a transaction
+    updatePieData(-updatedTransactions[index].amount, updatedTransactions[index].category)
     updatedTransactions.splice(index, 1);
     setTransactions(updatedTransactions); // deletes the selected transaction
-    updatePieData(-updatedTransactions[index].amount, updatedTransactions[index].category)
   };
 
   const changeTotal = (amount: number) => { // add to the total when adding a transaction
@@ -69,7 +69,6 @@ function HomePage() {
       }
       return item;
     });
-  
     setPieData(newData);
   };
 
@@ -91,7 +90,11 @@ function HomePage() {
             data={pieData}
             cx={200}
             cy={200}
-            label>
+            labelLine={false}
+            label={({ value, name }) => (value !== 0 ? `${name}: ${value}` : '')}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.fill}/>
+            ))}
             </Pie>
           </PieChart> 
         </Flex>

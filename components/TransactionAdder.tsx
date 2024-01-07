@@ -25,7 +25,7 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData }: Transa
         changeTotal(amount); // updates the total spent
         updatePieData(amount, cat);
     };
-    
+
     const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => { // set category
         e.preventDefault();
         setCat(e.target.value)
