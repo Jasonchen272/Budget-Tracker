@@ -53,7 +53,7 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData }: Transa
           <NumberInput onBlur={(e) => handleAmount(e)}  >
             <NumberInputField placeholder='Cost' style={{ backgroundColor: 'white' }} ></NumberInputField>
           </NumberInput>
-          <Button onClick = {newTransaction}>Add</Button>
+          <Button bg="white" onClick = {newTransaction}>Add</Button>
        </HStack>
       </Flex>
     );

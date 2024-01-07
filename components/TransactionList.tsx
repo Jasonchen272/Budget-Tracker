@@ -16,12 +16,19 @@ interface TransactionListProps {
 
 function TransactionList({transactions, deleteTransaction}:TransactionListProps) { //converts the transaction array to a transactionItem list
   return (
-    <Box>
-    <ul style={{ listStyle: 'none' , marginLeft: '30px', fontSize: '20px'}}>
-      {transactions.map((transaction, index) => (
-        <TransactionItem key={index} index={index} transaction={transaction} deleteTransaction={deleteTransaction}/>
-      ))}
-    </ul>
+    <Box 
+      bg="gray.200"
+      p={8}
+      borderRadius="60px"
+      boxShadow="lg"
+      width="fit-content"
+      height="fit-content"
+      mr={20}>
+      <ul style={{ listStyle: 'none' , marginLeft: '30px', fontSize: '20px'}}>
+        {transactions.map((transaction, index) => (
+          <TransactionItem key={index} index={index} transaction={transaction} deleteTransaction={deleteTransaction}/>
+        ))}
+      </ul>
   </Box>
   );
 }

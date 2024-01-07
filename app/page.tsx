@@ -54,7 +54,8 @@ function HomePage() {
   };
 
   const changeTotal = (amount: number) => { // add to the total when adding a transaction
-    setTotal(total + amount)
+    const formattedValue = (total + amount).toFixed(2)
+    setTotal(parseFloat(formattedValue));
   }
 
   const updatePieData = (amount: number, category: string) => {
@@ -84,7 +85,7 @@ function HomePage() {
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData}/>
-        <Text fontSize={30}mb={10} mt={30} color = "black">Transactions</Text>
+        <Text fontSize={30} mb={10} mt={30} color = "black">Transactions</Text>
         <Flex >
           <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
           <PieChart width={400} height={400}>
