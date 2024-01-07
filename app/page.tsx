@@ -57,26 +57,41 @@ function HomePage() {
   }
 
   const updatePieData = (index: number, amount: number, transactionList: Transaction[]) => {
-    console.log(amount)
-    console.log(transactionList)
     if(transactionList[index].category == 'Food'){
       const newData: Chart[] = [
-        {name: "Food", value: data[0].value + amount}, 
-        {name:"Shopping", value: data[1].value}, 
-        {name: "Entertainment", value: data[2].value}, 
-        {name:"Other", value: data[3].value}
+        {name: "Food", value: pieData[0].value + amount}, 
+        {name:"Shopping", value: pieData[1].value}, 
+        {name: "Entertainment", value: pieData[2].value}, 
+        {name:"Other", value: pieData[3].value}
       ];
       setPieData(newData);
     }
     else if(transactionList[index].category == 'Shopping'){
-      data[1].value += amount;
+      const newData: Chart[] = [
+        {name: "Food", value: pieData[0].value}, 
+        {name:"Shopping", value: pieData[1].value + amount}, 
+        {name: "Entertainment", value: pieData[2].value}, 
+        {name:"Other", value: pieData[3].value}
+      ];
+      setPieData(newData);
     }
     else if(transactionList[index].category == 'Entertainment'){
-      data[2].value += amount;
+      const newData: Chart[] = [
+        {name: "Food", value: pieData[0].value}, 
+        {name:"Shopping", value: pieData[1].value}, 
+        {name: "Entertainment", value: pieData[2].value + amount}, 
+        {name:"Other", value: pieData[3].value}
+      ];
+      setPieData(newData);
     }else {
-      data[3].value += amount;
+      const newData: Chart[] = [
+        {name: "Food", value: pieData[0].value}, 
+        {name:"Shopping", value: pieData[1].value}, 
+        {name: "Entertainment", value: pieData[2].value}, 
+        {name:"Other", value: pieData[3].value + amount}
+      ];
+      setPieData(newData);
     }   
-    console.log(data)
   }
 
   const currentDate = new Date();
@@ -94,7 +109,7 @@ function HomePage() {
           <PieChart width={400} height={400}>
             <Pie 
             dataKey={"value"}
-            data={data}
+            data={pieData}
             cx={200}
             cy={200}
             label>
