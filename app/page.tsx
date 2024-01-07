@@ -6,7 +6,7 @@ import Transactions from '@/components/Transactions';
 import TransactionAdder from '@/components/TransactionAdder';
 import TransactionList from '@/components/TransactionList';
 import TrasactionAdder from '@/components/TransactionAdder'
-import { PieChart, Pie, Cell, LabelList} from 'recharts';
+import { PieChart, Pie, Cell, LabelList,} from 'recharts';
 
 import {
   Box,
@@ -75,6 +75,9 @@ function HomePage() {
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
   
+
+  const filteredData = pieData.filter(entry => entry.value !== 0);
+
   return (
     <Box textAlign={"center"} bg="white">
       <Header/>
@@ -82,7 +85,7 @@ function HomePage() {
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData}/>
         <Text fontSize={30}mb={10} mt={30} color = "black">Transactions</Text>
-        <Flex>
+        <Flex >
           <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
           <PieChart width={400} height={400}>
             <Pie 
@@ -90,11 +93,11 @@ function HomePage() {
             data={pieData}
             cx={200}
             cy={200}
-            labelLine={false}
-            label={({ value, name }) => (value !== 0 ? `${name}: ${value}` : '')}>
+            label>
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.fill}/>
+              <Cell key={`cell-${index}`} fill={entry.fill} />
             ))}
+
             </Pie>
           </PieChart> 
         </Flex>
