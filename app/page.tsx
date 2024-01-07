@@ -75,11 +75,15 @@ function HomePage() {
           key = sorted[i];
           date = key.date;
           j = i - 1;
-          let date_split = date.split('-');
-          let sort_date_split = sorted[j].date.split('-');
-          while (j >= 0 && sort_date_split > date_split){
-            sorted[j + 1] = sorted[j];
-            j -= 1;
+          while (j >= 0) {
+            let date_split = date.split('-');
+            let sort_date_split = sorted[j].date.split('-');
+            if (sort_date_split[1] > date_split[1]) {
+              sorted[j + 1] = sorted[j];
+              j -= 1;
+            }else{
+              break;
+            }
           }
           sorted[j + 1] = key;
         }
@@ -111,7 +115,6 @@ function HomePage() {
         }  
         break;
     } 
-    console.log(sorted)
     setTransactions(sorted)
   }
 
