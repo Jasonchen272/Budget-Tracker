@@ -17,6 +17,7 @@ function Transactions( {category, amount, deleteTransaction }: TransactionProps)
   let imageSrc = `${category}.png`; //matches picture with category
   if(category !== "Food" && category !== "Entertainment" && category !== "Shopping"){   //if it is not a given category then it is other.png
     imageSrc = 'other.png'
+    category = 'Other'
   }
   return (
     <Flex alignContent={"center"}>
