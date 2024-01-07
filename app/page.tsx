@@ -75,9 +75,6 @@ function HomePage() {
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
   
-
-  const filteredData = pieData.filter(entry => entry.value !== 0);
-
   return (
     <Box textAlign={"center"} bg="white">
       <Header/>
