@@ -17,6 +17,7 @@ interface TransactionItemProps {
 function TransactionItem({index, transaction, deleteTransaction }:TransactionItemProps) {//a list of the transactions to be displayed
   return (
     <Box>
+      {/* <Transactions category = {'Entertainment'} amount = {transaction.amount}  deleteTransaction={() => deleteTransaction(index)}></Transactions> */}
       <li>
         <Transactions category = {transaction.category} amount = {transaction.amount}  deleteTransaction={() => deleteTransaction(index)}></Transactions>
       </li>

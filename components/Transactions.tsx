@@ -31,6 +31,7 @@ function Transactions( {category, amount, deleteTransaction }: TransactionProps)
       bgColor='#83a6ed';
       break;
     default:
+      category='Other'
       icon = <FontAwesomeIcon icon={faQuestionCircle} style={{ color: 'white' }} />;
       bgColor = '#82ca9d';
   }
@@ -48,15 +49,15 @@ function Transactions( {category, amount, deleteTransaction }: TransactionProps)
   };
 
   return (
-    <Flex alignContent={"center"}>
-      <HStack width={"100%"} color="black" mr={10}>
+    <HStack>
+      <HStack width={"250px"} color="black" mr={10}>
         <div style={circleContainerStyle}>
           {icon}
         </div>
         <Text>{category} ${amount}</Text>
       </HStack>
-      <Button padding={'0 25px'} margin={'auto'} ml={0} onClick={deleteTransaction}>Delete</Button>
-    </Flex>
+      <Button margin={'auto'} ml={0} onClick={deleteTransaction}>Delete</Button>
+    </HStack>
   );
 }
 
