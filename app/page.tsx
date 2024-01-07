@@ -35,7 +35,7 @@ interface Chart {
 }
 
 function HomePage() {
-  const data = [{name: "Food", value: 0}, {name:"Shopping", value: 0}, {name: "Entertainment", value: 0}, {name:"Other", value: 0}]
+  const data = [{name: "Food", value: 0}, {name:"Shopping", value: 0}, {name: "Entertainment", value: 0}, {name:"Other", value: 0}];
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
@@ -56,20 +56,27 @@ function HomePage() {
     setTotal(total + amount)
   }
 
-  const updatePieData = (index: number, amount: number) => {
-    console.log(index)
-    console.log(transactions)
-    if(transactions[index].category == 'Food'){
-      data[0].value += amount;
+  const updatePieData = (index: number, amount: number, transactionList: Transaction[]) => {
+    console.log(amount)
+    console.log(transactionList)
+    if(transactionList[index].category == 'Food'){
+      const newData: Chart[] = [
+        {name: "Food", value: data[0].value + amount}, 
+        {name:"Shopping", value: data[1].value}, 
+        {name: "Entertainment", value: data[2].value}, 
+        {name:"Other", value: data[3].value}
+      ];
+      setPieData(newData);
     }
-    else if(transactions[index].category == 'Shopping'){
+    else if(transactionList[index].category == 'Shopping'){
       data[1].value += amount;
     }
-    else if(transactions[index].category == 'Entertainment'){
+    else if(transactionList[index].category == 'Entertainment'){
       data[2].value += amount;
     }else {
       data[3].value += amount;
     }   
+    console.log(data)
   }
 
   const currentDate = new Date();
