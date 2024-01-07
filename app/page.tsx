@@ -107,18 +107,20 @@ function HomePage() {
   
   return (
     <Box textAlign={"center"} style={{
-      background: 'linear-gradient(135deg, #f8f8f8, #e0e0e0)', 
-      height: '100vh',
+      background: 'linear-gradient(to top, #F7FAFC, #EDF2F7, #A0AEC0)', 
+      minHeight: '100vh',
     }}>
       <Header/>
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData}/>
         <HStack>
-        <Text fontSize={30} m={10} p={2} color = "black">Transactions</Text>
+        <Text fontSize={30} m={10} p={2} color = "gray.500">Expenses</Text>
+        <Text fontSize={30} m={10} p={2} color = "gray.500">Income</Text>
         <Text>Sort by:</Text>
         <Box>
         <Select 
+          bgColor = "white"
           placeholder="Select one"
           defaultValue={'Time'}
           onChange = {()=>sort('Amount')}>
