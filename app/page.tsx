@@ -28,6 +28,12 @@ interface Transaction {
   date: string;
 }
 
+interface Income {
+  source: string;
+  amount: number;
+  date: string;
+}
+
 interface Chart {
   name: string;
   value: number;
@@ -39,6 +45,7 @@ function HomePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [pieData, setPieData] = useState<Chart[]>(data);
+  const [incomeData, setIncomeData] = useState<Income[]>([]);
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
@@ -126,6 +133,12 @@ function HomePage() {
     setTransactions(sorted)
   }
 
+  const handleList = (e:React.ChangeEvent<HTMLSelectElement>) =>{
+    e.preventDefault();
+    console.log(11)
+    //make display of expenses or income none and the other block
+  }
+
   const updatePieData = (amount: number, category: string) => {
     const categories = ['Food', 'Shopping', 'Entertainment', 'Other'];
 
@@ -156,6 +169,16 @@ function HomePage() {
         <HStack>
         <Text fontSize={30} m={10} p={2} color = "gray.500">Expenses</Text>
         <Text fontSize={30} m={10} p={2} color = "gray.500">Income</Text>
+        <Box>
+        <Select
+         bgColor = "white"
+         placeholder="Select one"
+         defaultValue={'Expenses'}
+         onChange = {(e)=>handleList(e)}>
+           <option value='Expenses'>Expenses</option>
+           <option value='Income'>Income</option> 
+          </Select>
+        </Box>
         <Text>Sort by:</Text>
         <Box>
         <Select 
