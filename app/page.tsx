@@ -2,10 +2,8 @@
 import React, {use, useState} from 'react';
 import Header from '@/components/Header';
 import SubHeader from '@/components/Subheader'
-import Transactions from '@/components/Transactions';
 import TransactionAdder from '@/components/TransactionAdder';
 import TransactionList from '@/components/TransactionList';
-import TrasactionAdder from '@/components/TransactionAdder'
 import { PieChart, Pie, Cell} from 'recharts';
 
 import {
@@ -23,7 +21,6 @@ import {
   NumberInputField,
   Tooltip,
 } from '@chakra-ui/react';
-import { createECDH } from 'crypto';
 
 interface Transaction {
   category: string;
@@ -49,8 +46,8 @@ function HomePage() {
 
   const deleteTransaction = (index: number) => {
     const updatedTransactions = [...transactions];
-    setTotal(total - transactions[index].amount) // subtract from the total when deleting a transaction
-    updatePieData(-updatedTransactions[index].amount, updatedTransactions[index].category)
+    changeTotal(- transactions[index].amount) // subtract from the total when deleting a transaction
+    updatePieData(-updatedTransactions[index].amount.toFixed(2), updatedTransactions[index].category)
     updatedTransactions.splice(index, 1);
     setTransactions(updatedTransactions); // deletes the selected transaction
   };
