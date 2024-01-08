@@ -12,11 +12,10 @@ type Transactions = {
 interface TransactionListProps {
   transactions: Transactions[];
   deleteTransaction: (index: number) => void;
-  display: boolean
 }
   
 
-function TransactionList({transactions, deleteTransaction, display}:TransactionListProps) { //converts the transaction array to a transactionItem list
+function TransactionList({transactions, deleteTransaction}:TransactionListProps) { //converts the transaction array to a transactionItem list
   return (
     <Box 
       bg="gray.200"
@@ -26,10 +25,10 @@ function TransactionList({transactions, deleteTransaction, display}:TransactionL
       width="fit-content"
       height="fit-content"
       mr={20}
-      display = {(transactions.length == 0 || !display) ? "none": "block"}>
+      display = {(transactions.length == 0 ) ? "none": "block"}>
       <ul style={{ listStyle: 'none' , marginLeft: '30px', fontSize: '20px'}}>
         {transactions.map((transaction, index) => (
-          <TransactionItem key={index} index={index} transaction={transaction} deleteTransaction={deleteTransaction} display = {display}/>
+          <TransactionItem key={index} index={index} transaction={transaction} deleteTransaction={deleteTransaction}/>
         ))}
       </ul>
   </Box>

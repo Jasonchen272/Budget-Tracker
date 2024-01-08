@@ -13,13 +13,11 @@ interface TransactionItemProps {
   index: number;
   transaction: Transaction;
   deleteTransaction: (index: number) => void;
-  display:boolean
 }
 
-function TransactionItem({index, transaction, deleteTransaction,display }:TransactionItemProps) {//a list of the transactions to be displayed
+function TransactionItem({index, transaction, deleteTransaction }:TransactionItemProps) {//a list of the transactions to be displayed
   return (
-    <Box
-    display = {(display) ? 'block' : 'none'}>
+    <Box>
       <li>
         <Transactions category = {transaction.category} amount = {transaction.amount}  date={transaction.date} deleteTransaction={() => deleteTransaction(index)}></Transactions>
       </li>

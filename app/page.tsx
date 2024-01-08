@@ -195,8 +195,8 @@ function HomePage() {
         </Box>
         
         </HStack>        
-        <Flex >
-          <TransactionList transactions={transactions} deleteTransaction={deleteTransaction} display= {tab}/>
+        <Flex display={(tab) ? 'flex': 'none'}>
+          <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
           <PieChart width={400} height={400}>
             <Pie 
             dataKey={"value"}
@@ -210,7 +210,9 @@ function HomePage() {
             ))}
             </Pie>
           </PieChart> 
-          <TransactionList transactions={incomeData} deleteTransaction={deleteIncome} display={!tab}/>
+        </Flex>
+        <Flex display={(!tab) ? 'flex': 'none'}>
+          <TransactionList transactions={incomeData} deleteTransaction={deleteIncome}/>
         </Flex>
       </Box>
     </Box>
