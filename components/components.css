@@ -30,11 +30,3 @@
 .tab-links.active-link{
     color: #91aae0;
 }
-
-.tab-contents{
-    display: none;
-}
-
-.tab-contents.active-tab{
-    display: block;
-}

@@ -22,6 +22,7 @@ import {
   NumberInput,
   NumberInputField,
   Tooltip,
+  Center,
 } from '@chakra-ui/react';
 
 interface Transaction {
@@ -44,7 +45,7 @@ function HomePage() {
   const [pieData, setPieData] = useState<Chart[]>(data);
   const [incomeData, setIncomeData] = useState<Transaction[]>([]);
   const [incomeTotal, setIncomeTotal] = useState<number> (0);
-  const [tab, setTab] = useState<boolean> (false);
+  const [tab, setTab] = useState<boolean> (true);
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
@@ -84,6 +85,11 @@ function HomePage() {
   }
 
   const handleTab = (e) =>{
+    var  tabLinks = document.getElementsByClassName("tab-links");
+    for (let i = 0; i < tabLinks.length; i++) {
+      tabLinks[i].classList.remove("active-link");
+    }
+    e.currentTarget.classList.add("active-link");
     setTab(!tab)
   }
   const sort = (sortBy:string) =>{
@@ -179,44 +185,43 @@ function HomePage() {
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData} display = {tab}/>
         <IncomeAdder addTransaction={addIncome} changeTotal={changeIncomeTotal} display={!tab}></IncomeAdder>
-        <HStack>
+        <VStack>
           <div className="tab-titles">
             <p className="tab-links active-link" onClick = {(e) => handleTab(e)}>Expenses</p>
             <p className="tab-links" onClick = {(e) => handleTab(e)}>Income</p>
           </div>
-        <Text>Sort by:</Text>
-        <Box>
-        <Select 
-          bgColor = "white"
-          placeholder="Select one"
-          defaultValue={'Time'}
-          onChange = {(e)=>handleSortType(e)}>
-            <option value='Time'>Time</option>
-            <option value='Category'>Category</option> 
-            <option value='Amount'>Amount</option> 
-        </Select>
-        </Box>
-        
-        </HStack>        
-        <Flex display={(tab) ? 'flex': 'none'}>
-          <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
-          <PieChart width={400} height={400}>
-            <Pie 
-            dataKey={"value"}
-            data={pieData}
-            cx={200}
-            cy={200}
-            labelLine={false}
-            label={({ value }) => (value !== 0 ? `$${value}` : '')}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.fill} />
-            ))}
-            </Pie>
-          </PieChart> 
-        </Flex>
-        <Flex display={(!tab) ? 'flex': 'none'}>
-          <TransactionList transactions={incomeData} deleteTransaction={deleteIncome}/>
-        </Flex>
+          <Text>Sort by:</Text>
+          <Box>
+          <Select 
+            bgColor = "white"
+            placeholder="Select one"
+            defaultValue={'Time'}
+            onChange = {(e)=>handleSortType(e)}>
+              <option value='Time'>Time</option>
+              <option value='Category'>Category</option> 
+              <option value='Amount'>Amount</option> 
+          </Select>
+          </Box>       
+          <Flex display={(tab) ? 'flex': 'none'}>
+            <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
+            <PieChart width={400} height={400}>
+              <Pie 
+              dataKey={"value"}
+              data={pieData}
+              cx={200}
+              cy={200}
+              labelLine={false}
+              label={({ value }) => (value !== 0 ? `$${value}` : '')}>
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.fill} />
+              ))}
+              </Pie>
+            </PieChart> 
+          </Flex>
+          <Flex display={(!tab) ? 'flex': 'none'}>
+            <TransactionList transactions={incomeData} deleteTransaction={deleteIncome}/>
+          </Flex>
+        </VStack> 
       </Box>
     </Box>
   );
