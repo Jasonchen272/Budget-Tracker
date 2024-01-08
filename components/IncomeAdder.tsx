@@ -11,12 +11,11 @@ interface Transaction {
 interface TransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
   changeTotal:(amount:number) => void;
-  updatePieData: (amount: number, category: string) => void;
-  display:boolean
+  display:boolean;
 }
   
 
-function TransactionAdder({ addTransaction, changeTotal, updatePieData, display }: TransactionFormProps) {
+function IncomeAdder({ addTransaction, changeTotal, display}: TransactionFormProps) {
     const currentDate = new Date();
     const formattedDate = new Date(currentDate).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -29,16 +28,11 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData, display 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     const newTransaction = () => { 
-        addTransaction({ category:cat, amount: amount, date: date}); // update the transaction list in page.tsx
+        addTransaction({ category:'Income', amount: amount, date: date}); // update the transaction list in page.tsx
         const updatedTransactions = [...transactions, { category: cat, amount: amount || 0, date: date}];
         setTransactions(updatedTransactions); // update the transaction list
         changeTotal(amount); // updates the total spent
-        updatePieData(amount, cat);
-    }
-
-    const handleCat = (e: React.ChangeEvent<HTMLSelectElement>) => { // set category
-        e.preventDefault();
-        setCat(e.target.value)
+        console.log(transactions)
     }
 
     const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => { 
@@ -67,14 +61,8 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData, display 
     }
 
     return (
-      <Flex alignItems={'center'} justifyContent={'center'} display = {(display) ? 'flex':'none'}>
+      <Flex alignItems={'center'} justifyContent={'center'} display = {{display} ? 'flex':'none'}>
         <HStack mt={30}>
-          <Select placeholder = {"Select Catagory"} defaultValue={"other"} id = "userCategory"  onChange={(e) => handleCat(e)} value = {cat} bgColor = "white">
-            <option value='Food'>Food</option>
-            <option value='Entertainment'>Entertainment</option> 
-            <option value='Shopping'>Shopping</option>
-            <option value='Other'>Other</option>
-          </Select>
           <NumberInput onBlur={(e) => handleAmount(e)}  >
             <NumberInputField placeholder='Cost' style={{ backgroundColor: 'white' }} ></NumberInputField>
           </NumberInput>
@@ -87,4 +75,4 @@ function TransactionAdder({ addTransaction, changeTotal, updatePieData, display 
     );
 }
 
-export default TransactionAdder;
+export default IncomeAdder;

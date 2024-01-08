@@ -5,6 +5,7 @@ import SubHeader from '@/components/Subheader'
 import TransactionAdder from '@/components/TransactionAdder';
 import TransactionList from '@/components/TransactionList';
 import { PieChart, Pie, Cell} from 'recharts';
+import IncomeAdder from '@/components/IncomeAdder';
 
 import {
   Box,
@@ -28,11 +29,6 @@ interface Transaction {
   date: string;
 }
 
-interface Income {
-  source: string;
-  amount: number;
-  date: string;
-}
 
 interface Chart {
   name: string;
@@ -45,11 +41,17 @@ function HomePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [pieData, setPieData] = useState<Chart[]>(data);
-  const [incomeData, setIncomeData] = useState<Income[]>([]);
+  const [incomeData, setIncomeData] = useState<Transaction[]>([]);
+  const [incomeTotal, setIncomeTotal] = useState<number> (0);
+  const [tab, setTab] = useState<boolean> (true);
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
   };
+
+  const addIncome = (newIncome:Transaction) =>{
+    setIncomeData([...incomeData, newIncome])
+  }
 
   const deleteTransaction = (index: number) => {
     const updatedTransactions = [...transactions];
@@ -59,9 +61,20 @@ function HomePage() {
     setTransactions(updatedTransactions); // deletes the selected transaction
   };
 
+  const deleteIncome = (index:number) => {
+    const updatedIncome = [...incomeData];
+    changeIncomeTotal(- incomeData[index].amount) // subtract from the total when deleting a transaction
+    updatedIncome.splice(index, 1);
+    setIncomeData(updatedIncome); // deletes the selected transaction
+  }
+
   const changeTotal = (amount: number) => { // add to the total when adding a transaction
     const formattedValue = (total + amount).toFixed(2)
     setTotal(parseFloat(formattedValue));
+  }
+  const changeIncomeTotal = (amount: number) => { // add to the total when adding a transaction
+    const formattedValue = (incomeTotal + amount).toFixed(2)
+    setIncomeTotal(parseFloat(formattedValue));
   }
 
   const handleSortType = (e:React.ChangeEvent<HTMLSelectElement>) => {
@@ -133,12 +146,6 @@ function HomePage() {
     setTransactions(sorted)
   }
 
-  const handleList = (e:React.ChangeEvent<HTMLSelectElement>) =>{
-    e.preventDefault();
-    console.log(11)
-    //make display of expenses or income none and the other block
-  }
-
   const updatePieData = (amount: number, category: string) => {
     const categories = ['Food', 'Shopping', 'Entertainment', 'Other'];
 
@@ -165,20 +172,11 @@ function HomePage() {
       <Header/>
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
-        <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData}/>
+        <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData} display = {tab}/>
+        <IncomeAdder addTransaction={addIncome} changeTotal={changeIncomeTotal} display={!tab}></IncomeAdder>
         <HStack>
-        <Text fontSize={30} m={10} p={2} color = "gray.500">Expenses</Text>
-        <Text fontSize={30} m={10} p={2} color = "gray.500">Income</Text>
-        <Box>
-        <Select
-         bgColor = "white"
-         placeholder="Select one"
-         defaultValue={'Expenses'}
-         onChange = {(e)=>handleList(e)}>
-           <option value='Expenses'>Expenses</option>
-           <option value='Income'>Income</option> 
-          </Select>
-        </Box>
+        <Button fontSize={30} m={10} p={2} bg = "clear" color = "gray.500">Expenses</Button>
+        <Button fontSize={30} m={10} p={2} bg = "clear" color = "gray.500">Income</Button>
         <Text>Sort by:</Text>
         <Box>
         <Select 
@@ -194,7 +192,8 @@ function HomePage() {
         
         </HStack>        
         <Flex >
-          <TransactionList transactions={transactions} deleteTransaction={deleteTransaction}/>
+          <TransactionList transactions={transactions} deleteTransaction={deleteTransaction} display= {tab}/>
+          <TransactionList transactions={incomeData} deleteTransaction={deleteIncome} display={!tab}/>
           <PieChart width={400} height={400}>
             <Pie 
             dataKey={"value"}

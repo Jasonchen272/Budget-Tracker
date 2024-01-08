@@ -32,6 +32,10 @@ function Transactions( {category, amount, date, deleteTransaction }: Transaction
       icon = <FontAwesomeIcon icon={faCartShopping} style={{ color: 'white' }}/>
       bgColor='#83a6ed';
       break;
+    case "Income":
+      icon = <FontAwesomeIcon icon={faQuestionCircle} style={{ color: 'white' }} />;
+      bgColor = '#82ca9d';
+      break;
     default:
       category='Other'
       icon = <FontAwesomeIcon icon={faQuestionCircle} style={{ color: 'white' }} />;
