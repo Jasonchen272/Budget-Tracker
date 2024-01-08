@@ -27,7 +27,7 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
               {month}
           </Box>
           <Box ml={30} color="gray.500" fontSize={40} fontWeight={600}>
-            ${total}
+            Total Spent: ${total}
           </Box>
         </HStack>
         <Box>

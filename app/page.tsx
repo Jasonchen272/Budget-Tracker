@@ -6,6 +6,7 @@ import TransactionAdder from '@/components/TransactionAdder';
 import TransactionList from '@/components/TransactionList';
 import { PieChart, Pie, Cell} from 'recharts';
 import IncomeAdder from '@/components/IncomeAdder';
+import '@/components/components.css';
 
 import {
   Box,
@@ -163,6 +164,23 @@ function HomePage() {
 
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
+
+  const opentab = (tabname: string, e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+    const tabLinks = document.getElementsByClassName("tab-links") as HTMLCollectionOf<Element>;
+    const tabContents = document.getElementsByClassName("tab-contents") as HTMLCollectionOf<Element>;
+
+    for (let i = 0; i < tabLinks.length; i++) {
+      tabLinks[i].classList.remove("active-link");
+    }
+    for (let i = 0; i < tabContents.length; i++) {
+      tabContents[i].classList.remove("active-tab");
+    }
+    (e.currentTarget as Element).classList.add("active-link");
+    const selectedTabContent = document.getElementById(tabname);
+    if (selectedTabContent) {
+      selectedTabContent.classList.add("active-tab");
+    }
+  };
   
   return (
     <Box textAlign={"center"} style={{
@@ -172,42 +190,44 @@ function HomePage() {
       <Header/>
       <SubHeader curr_month={currentMonth} total={total}/>
       <Box textAlign={"center"}>
-        <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData} display = {tab}/>
+        <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData} display={!tab}/>
         <IncomeAdder addTransaction={addIncome} changeTotal={changeIncomeTotal} display={!tab}></IncomeAdder>
-        <HStack>
-        <Button fontSize={30} m={10} p={2} bg = "clear" color = "gray.500">Expenses</Button>
-        <Button fontSize={30} m={10} p={2} bg = "clear" color = "gray.500">Income</Button>
-        <Text>Sort by:</Text>
-        <Box>
-        <Select 
-          bgColor = "white"
-          placeholder="Select one"
-          defaultValue={'Time'}
-          onChange = {(e)=>handleSortType(e)}>
-            <option value='Time'>Time</option>
-            <option value='Category'>Category</option> 
-            <option value='Amount'>Amount</option> 
-        </Select>
-        </Box>
-        
-        </HStack>        
-        <Flex >
-          <TransactionList transactions={transactions} deleteTransaction={deleteTransaction} display= {tab}/>
-          <TransactionList transactions={incomeData} deleteTransaction={deleteIncome} display={!tab}/>
-          <PieChart width={400} height={400}>
-            <Pie 
-            dataKey={"value"}
-            data={pieData}
-            cx={200}
-            cy={200}
-            labelLine={false}
-            label={({ value }) => (value !== 0 ? `$${value}` : '')}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.fill} />
-            ))}
-            </Pie>
-          </PieChart> 
-        </Flex>
+        <VStack>
+          <div className="tab-titles">
+            <p className="tab-links active-link" onClick={(e) => opentab('expenses', e)}>Expenses</p>
+            <p className="tab-links" onClick={(e) => opentab('income', e)}>Income</p>
+              <Select 
+                bgColor = "white"
+                placeholder="Select one"
+                defaultValue={'Time'}
+                onChange = {(e)=>handleSortType(e)}>
+                  <option value='Time'>Time</option>
+                  <option value='Category'>Category</option> 
+                  <option value='Amount'>Amount</option> 
+              </Select>
+          </div>
+          <div className="tab-contents active-tab" id="expenses">
+            <Flex >
+              <TransactionList transactions={transactions} deleteTransaction={deleteTransaction} display={!tab}/>
+              <PieChart width={400} height={400}>
+                <Pie 
+                dataKey={"value"}
+                data={pieData}
+                cx={200}
+                cy={200}
+                labelLine={false}
+                label={({ value }) => (value !== 0 ? `$${value}` : '')}>
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
+                ))}
+                </Pie>
+              </PieChart> 
+            </Flex>
+          </div>
+          <div className="tab-contents" id="income">
+            <TransactionList transactions={incomeData} deleteTransaction={deleteIncome} display={!tab}/>
+          </div>
+        </VStack>    
       </Box>
     </Box>
   );

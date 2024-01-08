@@ -1,0 +1,40 @@
+.tab-titles{
+    display: flex;
+    margin: 20px 0px 40px 0;
+    color: #91aae0;
+}
+
+.tab-links{
+    margin-right: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+}
+
+.tab-links::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #91aae0;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: 0.5s;
+}
+
+.tab-links.active-link::after{
+    width: 100%;
+}
+
+.tab-links.active-link{
+    color: #91aae0;
+}
+
+.tab-contents{
+    display: none;
+}
+
+.tab-contents.active-tab{
+    display: block;
+}
