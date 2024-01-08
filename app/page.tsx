@@ -181,7 +181,7 @@ function HomePage() {
       minHeight: '100vh',
     }}>
       <Header/>
-      <SubHeader curr_month={currentMonth} total={total}/>
+      <SubHeader curr_month={currentMonth} expense={tab} total={(tab) ? total: incomeTotal}/>
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData} display = {tab}/>
         <IncomeAdder addTransaction={addIncome} changeTotal={changeIncomeTotal} display={!tab}></IncomeAdder>

@@ -4,9 +4,10 @@ import { Box, Flex, HStack, Select, VStack } from '@chakra-ui/react';
 interface SubHeaderProps {
   curr_month: string;
   total: number;
+  expense:boolean
 }
 
-function SubHeader({ curr_month, total}: SubHeaderProps) {
+function SubHeader({ curr_month, total, expense}: SubHeaderProps) {
   const months = [
     'January', 'February', 'March', 'April',
     'May', 'June', 'July', 'August',
@@ -27,7 +28,10 @@ function SubHeader({ curr_month, total}: SubHeaderProps) {
               {month}
           </Box>
           <Box ml={30} color="gray.500" fontSize={40} fontWeight={600}>
-            Total Spent: ${total}
+          {(expense) ? " Expense:": " Income:"}
+          </Box>
+          <Box ml={30} color="gray.500" fontSize={40} fontWeight={600}>
+            ${total}
           </Box>
         </HStack>
         <Box>
