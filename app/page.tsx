@@ -42,7 +42,6 @@ function HomePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [pieData, setPieData] = useState<Chart[]>(data);
-  const [sortType, setSortType] = useState<string>('Time');
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
@@ -66,27 +65,39 @@ function HomePage() {
     sort(e.target.value)
   }
   const sort = (sortBy:string) =>{
-    const sorted  = [...transactions];
+    let sorted  = [...transactions];
     let i, key, j;
     switch(sortBy){
       case 'Time':
+        const yearFirstFormat = sorted.map((item)=>{
+          const oldFormatYear = item.date.slice(-4);
+          const oldFormatMD = item.date.slice(0,5);
+          const newDateFormat = (oldFormatYear + oldFormatMD).replace(/[-_]/g, '');;
+          return {...item, date: newDateFormat}//YYYYMMDD
+        });
+        sorted = yearFirstFormat;
         let date;
         for (i = 1; i < sorted.length; i++){
           key = sorted[i];
           date = key.date;
           j = i - 1;
-          while (j >= 0) {
-            let date_split = date.split('-');
-            let sort_date_split = sorted[j].date.split('-');
-            if (sort_date_split[1] > date_split[1]) {
+          while (j >= 0 && sorted[j].date > date) {
               sorted[j + 1] = sorted[j];
-              j -= 1;
-            }else{
-              break;
-            }
+              j -= 1;;
           }
           sorted[j + 1] = key;
         }
+        const MDYFormat = sorted.map((item)=>{
+          const oldFormatDay = item.date.slice(6,8);
+          const oldFormatMonth = item.date.slice(4,6);
+          const oldFormatYear = item.date.slice(0,4);
+          const newDateFormat = (oldFormatMonth + '-' + oldFormatDay + '-' + oldFormatYear);
+          console.log(newDateFormat)
+
+          return {...item, date: newDateFormat}//MM-DD-YYYY
+        });
+        sorted = MDYFormat;
+        
         break;
       case 'Category':
         let category;  
