@@ -44,7 +44,7 @@ function HomePage() {
   const [pieData, setPieData] = useState<Chart[]>(data);
   const [incomeData, setIncomeData] = useState<Transaction[]>([]);
   const [incomeTotal, setIncomeTotal] = useState<number> (0);
-  const [tab, setTab] = useState<boolean> (true);
+  const [tab, setTab] = useState<boolean> (false);
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
@@ -81,6 +81,10 @@ function HomePage() {
   const handleSortType = (e:React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     sort(e.target.value)
+  }
+
+  const handleTab = (e) =>{
+    setTab(!tab)
   }
   const sort = (sortBy:string) =>{
     let sorted  = [...transactions];
