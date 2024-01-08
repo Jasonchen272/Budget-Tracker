@@ -24,7 +24,6 @@ function TransactionList({transactions, deleteTransaction}:TransactionListProps)
       boxShadow="lg"
       width="fit-content"
       height="fit-content"
-      mr={20}
       display = {(transactions.length == 0 ) ? "none": "block"}>
       <ul style={{ listStyle: 'none' , marginLeft: '30px', fontSize: '20px'}}>
         {transactions.map((transaction, index) => (
