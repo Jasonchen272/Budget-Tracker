@@ -43,7 +43,7 @@ function HomePage() {
   const [pieData, setPieData] = useState<Chart[]>(data);
   const [incomeData, setIncomeData] = useState<Transaction[]>([]);
   const [incomeTotal, setIncomeTotal] = useState<number> (0);
-  const [tab, setTab] = useState<boolean> (true);
+  const [tab, setTab] = useState<boolean> (false);
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
@@ -80,6 +80,10 @@ function HomePage() {
   const handleSortType = (e:React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     sort(e.target.value)
+  }
+
+  const handleTab = (e) =>{
+    setTab(!tab)
   }
   const sort = (sortBy:string) =>{
     let sorted  = [...transactions];
@@ -175,8 +179,8 @@ function HomePage() {
         <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData} display = {tab}/>
         <IncomeAdder addTransaction={addIncome} changeTotal={changeIncomeTotal} display={!tab}></IncomeAdder>
         <HStack>
-        <Button fontSize={30} m={10} p={2} bg = "clear" color = "gray.500">Expenses</Button>
-        <Button fontSize={30} m={10} p={2} bg = "clear" color = "gray.500">Income</Button>
+        <Button fontSize={30} m={10} p={2} bg = "clear" color = "gray.500" onClick = {(e) => handleTab(e)}>Expenses</Button>
+        <Button fontSize={30} m={10} p={2} bg = "clear" color = "gray.500" onClick = {(e) => handleTab(e)}>Income</Button>
         <Text>Sort by:</Text>
         <Box>
         <Select 

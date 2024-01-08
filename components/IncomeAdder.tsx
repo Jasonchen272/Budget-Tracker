@@ -61,7 +61,7 @@ function IncomeAdder({ addTransaction, changeTotal, display}: TransactionFormPro
     }
 
     return (
-      <Flex alignItems={'center'} justifyContent={'center'} display = {{display} ? 'flex':'none'}>
+      <Flex alignItems={'center'} justifyContent={'center'} display = {(display) ? 'flex':'none'}>
         <HStack mt={30}>
           <NumberInput onBlur={(e) => handleAmount(e)}  >
             <NumberInputField placeholder='Cost' style={{ backgroundColor: 'white' }} ></NumberInputField>
