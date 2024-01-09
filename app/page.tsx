@@ -11,9 +11,7 @@ import '@/components/components.css';
 import {
   Box,
   Flex,
-  Heading,
   Button,
-  Link,
   Text,
   VStack,
   HStack,
@@ -21,7 +19,6 @@ import {
   Select,
   NumberInput,
   NumberInputField,
-  Tooltip,
   Center,
 } from '@chakra-ui/react';
 

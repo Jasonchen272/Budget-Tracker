@@ -1,7 +1,6 @@
 'use client';
 import React, {useState} from 'react';
-import { Box, Heading, Link, Flex, HStack, Select, NumberInput, NumberInputField, Button, Checkbox, VStack } from '@chakra-ui/react';
-import { format } from 'path';
+import { Box, Link, Flex, HStack, Select, NumberInput, NumberInputField, Button, VStack } from '@chakra-ui/react';
 
 interface Transaction {
   category: string;

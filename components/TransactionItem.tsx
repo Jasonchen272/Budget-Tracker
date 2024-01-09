@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Link, Flex } from '@chakra-ui/react';
+import { Box, Link, Flex } from '@chakra-ui/react';
 import Transactions from './Transactions';
 
 

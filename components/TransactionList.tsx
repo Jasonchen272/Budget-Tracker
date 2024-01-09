@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import TransactionItem from './TransactionItem';
 
-import { Box, Heading, Link, Flex,Text } from '@chakra-ui/react';
-import { Archivo_Black } from 'next/font/google';
+import { Box, Link, Flex,Text } from '@chakra-ui/react';
 type Transactions = {
   amount: number;
   category: string;

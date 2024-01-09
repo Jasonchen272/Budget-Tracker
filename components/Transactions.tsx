@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading,Text, Link, Flex, HStack, Button } from '@chakra-ui/react';
+import { Box,Text, Link, Flex, HStack, Button } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faFilm, faQuestionCircle, faCartShopping} from '@fortawesome/free-solid-svg-icons';
 
