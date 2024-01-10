@@ -37,22 +37,34 @@ interface Chart {
   fill: string;
 }
 
+interface MonthData {
+  monthPieInfo: Chart[];
+  monthExpenseTotal: number;
+  monthTransactionsList: Transaction[];
+  monthIncomeTotal: number;
+  monthIncomeList: Transaction[];
+}
+
+
+
 function HomePage() {
   const data = [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}];//pie data initialized
 
-  const MonthsData = new Map<string, Chart[]>([
-    ['January', [{name: "Food", value: 50, fill: '#8884d8' }, {name:"Shopping", value: 10, fill: '#83a6ed'}, {name: "Entertainment", value: 15, fill: '#8dd1e1' }, {name:"Other", value: 20, fill: '#82ca9d'}]],
-    ['February', [{name: "Food", value: 2, fill: '#8884d8' }, {name:"Shopping", value: 2, fill: '#83a6ed'}, {name: "Entertainment", value: 2, fill: '#8dd1e1' }, {name:"Other", value: 2, fill: '#82ca9d'}]],
-    ['March', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['April', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['May', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['June', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['July', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['August', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['September', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['October', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['November', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
-    ['December', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+  const MonthsData = new Map<string, MonthData>([ //piechart data for all the
+    ['January', {monthPieInfo:[{name: "Food", value: 50, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['February', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['March', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['April', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['May', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['June', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['July', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['August', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['September', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['October', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['November', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['December', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+
+
   ]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);

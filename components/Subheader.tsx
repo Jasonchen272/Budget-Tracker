@@ -6,13 +6,27 @@ interface SubHeaderProps {
   curr_month: string;
   total: number;
   expense:boolean
-  allMonths: Map<string, Chart[]>
+  allMonths: Map<string, MonthData>
   setPieData:React.Dispatch<React.SetStateAction<Chart[]>>
 }
 interface Chart {
   name: string;
   value: number;
   fill: string;
+}
+
+interface MonthData {
+  monthPieInfo: Chart[];
+  monthExpenseTotal: number;
+  monthTransactionsList: Transaction[];
+  monthIncomeTotal: number;
+  monthIncomeList: Transaction[];
+}
+interface Transaction {
+  category: string;
+  amount: number;
+  date: string;
+  key: string
 }
 
 function SubHeader({ curr_month, total, expense, allMonths, setPieData}: SubHeaderProps) {
@@ -27,7 +41,7 @@ function SubHeader({ curr_month, total, expense, allMonths, setPieData}: SubHead
   const handleMonth = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setMonth(e.target.value)
-    setPieData(allMonths.get(e.target.value) as SetStateAction<Chart[]>)
+    setPieData(allMonths.get(e.target.value)?.monthPieInfo as SetStateAction<Chart[]>)
   }
   return (
     <Flex alignItems={'center'} justifyContent={'center'}>
