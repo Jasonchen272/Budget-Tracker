@@ -1,11 +1,14 @@
 'use client';
 import React, {useState} from 'react';
 import { Box, Link, Flex, HStack, Select, NumberInput, NumberInputField, Button, VStack } from '@chakra-ui/react';
+import { v4 as uuidv4 } from 'uuid';
+
 
 interface Transaction {
   category: string;
   amount: number;
   date: string;
+  key: string
 }
 interface TransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
@@ -21,14 +24,14 @@ function IncomeAdder({ addTransaction, changeTotal, display}: TransactionFormPro
       month: '2-digit',
       day: '2-digit',
     }).replace(/\//g, '-');
-    const [cat, setCat] = useState<string>('');
+    const [cat, setCat] = useState<string>('Income');
     const [amount, setAmount] = useState<number>(0);
     const [date, setDate] = useState<string>(formattedDate);
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     const newTransaction = () => { 
-        addTransaction({ category:'Income', amount: amount, date: date}); // update the transaction list in page.tsx
-        const updatedTransactions = [...transactions, { category: cat, amount: amount || 0, date: date}];
+        addTransaction({ category:'Income', amount: amount, date: date, key: uuidv4()}); // update the transaction list in page.tsx
+        const updatedTransactions = [...transactions, { category: cat, amount: amount || 0, date: date, key:uuidv4()}];
         setTransactions(updatedTransactions); // update the transaction list
         changeTotal(amount); // updates the total spent
         console.log(transactions)

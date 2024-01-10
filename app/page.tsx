@@ -7,6 +7,7 @@ import TransactionList from '@/components/TransactionList';
 import { PieChart, Pie, Cell} from 'recharts';
 import IncomeAdder from '@/components/IncomeAdder';
 import '@/components/components.css';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   Box,
@@ -26,6 +27,7 @@ interface Transaction {
   category: string;
   amount: number;
   date: string;
+  key: string
 }
 
 
@@ -42,7 +44,7 @@ function HomePage() {
   const [pieData, setPieData] = useState<Chart[]>(data);
   const [incomeData, setIncomeData] = useState<Transaction[]>([]);
   const [incomeTotal, setIncomeTotal] = useState<number> (0);
-  const [tab, setTab] = useState<boolean> (true);
+  const [tab, setTab] = useState<boolean> (true); //true for expenses and false for income
 
   const addTransaction = (newTransaction: Transaction) => { // add transaction to the list of transactions
     setTransactions([...transactions, newTransaction]);
@@ -81,13 +83,13 @@ function HomePage() {
     sort(e.target.value)
   }
 
-  const handleTab = (e) =>{
+  const handleTab = (e, whichTab:string) =>{
     var  tabLinks = document.getElementsByClassName("tab-links");
     for (let i = 0; i < tabLinks.length; i++) {
       tabLinks[i].classList.remove("active-link");
     }
     e.currentTarget.classList.add("active-link");
-    setTab(!tab)
+    setTab((whichTab == 'Income') ? false: true)
   }
   const sort = (sortBy:string) =>{
     let sorted  = [...transactions];
@@ -117,7 +119,6 @@ function HomePage() {
           const oldFormatMonth = item.date.slice(4,6);
           const oldFormatYear = item.date.slice(0,4);
           const newDateFormat = (oldFormatMonth + '-' + oldFormatDay + '-' + oldFormatYear);
-          console.log(newDateFormat)
 
           return {...item, date: newDateFormat}//MM-DD-YYYY
         });
@@ -162,8 +163,12 @@ function HomePage() {
     }
     const newData: Chart[] = pieData.map((item) => {
       if (category === item.name) {
+        console.log(item)
+
         return { ...item, value: item.value + amount };
       }
+      console.log(item)
+
       return item;
     });
     setPieData(newData);
@@ -184,8 +189,8 @@ function HomePage() {
         <IncomeAdder addTransaction={addIncome} changeTotal={changeIncomeTotal} display={!tab}></IncomeAdder>
         <VStack>
           <div className="tab-titles">
-            <p className="tab-links active-link" onClick = {(e) => handleTab(e)}>Expenses</p>
-            <p className="tab-links" onClick = {(e) => handleTab(e)}>Income</p>
+            <p className="tab-links active-link" onClick = {(e) => handleTab(e,'Expenses')}>Expenses</p>
+            <p className="tab-links" onClick = {(e) => handleTab(e,"Income")}>Income</p>
           </div>
           <Text>Sort by:</Text>
           <Box>

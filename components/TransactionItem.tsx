@@ -19,7 +19,7 @@ function TransactionItem({index, transaction, deleteTransaction }:TransactionIte
   return (
     <Box>
       <li>
-        <Transactions category = {transaction.category} amount = {transaction.amount}  date={transaction.date} deleteTransaction={() => deleteTransaction(index)}></Transactions>
+        <Transactions index = {index} category = {transaction.category} amount = {transaction.amount}  date={transaction.date} deleteTransaction={() => deleteTransaction(index)}></Transactions>
       </li>
     </Box>
   );

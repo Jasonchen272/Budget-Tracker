@@ -14,9 +14,10 @@ interface TransactionProps {
   amount: number;
   date: string;
   deleteTransaction: React.MouseEventHandler<HTMLButtonElement>;
+  index: number
 }
 
-function Transactions( {category, amount, date, deleteTransaction }: TransactionProps) {// actual transaction that is displayed on screen
+function Transactions( {category, amount, date, deleteTransaction, index }: TransactionProps) {// actual transaction that is displayed on screen
   let icon;
   let bgColor;
   switch (category) {
