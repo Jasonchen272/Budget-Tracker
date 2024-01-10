@@ -1,5 +1,5 @@
 'use client';
-import React, {use, useState} from 'react';
+import React, {use, useState } from 'react';
 import Header from '@/components/Header';
 import SubHeader from '@/components/Subheader'
 import TransactionAdder from '@/components/TransactionAdder';
@@ -34,11 +34,26 @@ interface Transaction {
 interface Chart {
   name: string;
   value: number;
+  fill: string;
 }
 
 function HomePage() {
-  const data = [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}];
+  const data = [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}];//pie data initialized
 
+  const MonthsData = new Map<string, Chart[]>([
+    ['January', [{name: "Food", value: 50, fill: '#8884d8' }, {name:"Shopping", value: 10, fill: '#83a6ed'}, {name: "Entertainment", value: 15, fill: '#8dd1e1' }, {name:"Other", value: 20, fill: '#82ca9d'}]],
+    ['February', [{name: "Food", value: 2, fill: '#8884d8' }, {name:"Shopping", value: 2, fill: '#83a6ed'}, {name: "Entertainment", value: 2, fill: '#8dd1e1' }, {name:"Other", value: 2, fill: '#82ca9d'}]],
+    ['March', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['April', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['May', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['June', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['July', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['August', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['September', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['October', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['November', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+    ['December', [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}]],
+  ]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [pieData, setPieData] = useState<Chart[]>(data);
@@ -163,17 +178,13 @@ function HomePage() {
     }
     const newData: Chart[] = pieData.map((item) => {
       if (category === item.name) {
-        console.log(item)
 
         return { ...item, value: item.value + amount };
       }
-      console.log(item)
-
       return item;
     });
     setPieData(newData);
   };
-
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
   
@@ -183,7 +194,7 @@ function HomePage() {
       minHeight: '100vh',
     }}>
       <Header/>
-      <SubHeader curr_month={currentMonth} expense={tab} total={(tab) ? total: incomeTotal}/>
+      <SubHeader curr_month={currentMonth} expense={tab} total={(tab) ? total: incomeTotal} allMonths={MonthsData} setPieData={setPieData}/>
       <Box textAlign={"center"}>
         <TransactionAdder addTransaction={addTransaction} changeTotal={changeTotal} updatePieData={updatePieData} display = {tab}/>
         <IncomeAdder addTransaction={addIncome} changeTotal={changeIncomeTotal} display={!tab}></IncomeAdder>

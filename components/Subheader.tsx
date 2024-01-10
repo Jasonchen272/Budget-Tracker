@@ -1,13 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState,SetStateAction} from 'react';
 import { Box, Flex, HStack, Select, VStack } from '@chakra-ui/react';
+import Transactions from './Transactions';
 
 interface SubHeaderProps {
   curr_month: string;
   total: number;
   expense:boolean
+  allMonths: Map<string, Chart[]>
+  setPieData:React.Dispatch<React.SetStateAction<Chart[]>>
+}
+interface Chart {
+  name: string;
+  value: number;
+  fill: string;
 }
 
-function SubHeader({ curr_month, total, expense}: SubHeaderProps) {
+function SubHeader({ curr_month, total, expense, allMonths, setPieData}: SubHeaderProps) {
   const months = [
     'January', 'February', 'March', 'April',
     'May', 'June', 'July', 'August',
@@ -19,6 +27,7 @@ function SubHeader({ curr_month, total, expense}: SubHeaderProps) {
   const handleMonth = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setMonth(e.target.value)
+    setPieData(allMonths.get(e.target.value) as SetStateAction<Chart[]>)
   }
   return (
     <Flex alignItems={'center'} justifyContent={'center'}>
