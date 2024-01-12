@@ -51,7 +51,7 @@ function HomePage() {
   const data = [{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}];//pie data initialized
 
   const MonthsData = new Map<string, MonthData>([ //piechart data for all the
-    ['January', {monthPieInfo:[{name: "Food", value: 50, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
+    ['January', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
     ['February', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
     ['March', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
     ['April', {monthPieInfo:[{name: "Food", value: 0, fill: '#8884d8' }, {name:"Shopping", value: 0, fill: '#83a6ed'}, {name: "Entertainment", value: 0, fill: '#8dd1e1' }, {name:"Other", value: 0, fill: '#82ca9d'}],monthExpenseTotal: 0, monthTransactionsList:[], monthIncomeTotal: 0,monthIncomeList:[]}],
@@ -66,6 +66,21 @@ function HomePage() {
 
 
   ]);
+
+  const matchMonths = new Map<string,string>([
+    ['01', 'January'],
+    ['02', 'February'],
+    ['03', 'March'],
+    ['04', 'April'],
+    ['05', 'May'],
+    ['06', 'June'],
+    ['07', 'July'],
+    ['08', 'August'],
+    ['09', 'September'],
+    ['10', 'October'],
+    ['11', 'November'],
+    ['12', 'December'],
+  ])
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [pieData, setPieData] = useState<Chart[]>(data);
